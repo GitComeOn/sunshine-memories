@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Time · 管理后台</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #f9f6ef;
+      --sage: #7a9e76;
+      --sage-light: #b8d1b4;
+      --sage-pale: #e4eed3;
+      --moss: #4a6e45;
+      --text: #2a2a2a;
+      --text-mid: #5a5a5a;
+      --text-light: #9a9a9a;
+      --white: #ffffff;
+      --border: #e5e0d5;
+      --red: #d96b6b;
+      --red-pale: #fdeaea;
+    }
+    body {
+      background: var(--cream);
+      font-family: 'Noto Sans SC', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+    }
+    .admin-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .admin-logo {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--moss);
+    }
+    .admin-logo small {
+      font-style: normal;
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 0.7rem;
+      color: var(--text-light);
+      margin-left: 8px;
+      letter-spacing: 0.05em;
+    }
+    .btn-view {
+      font-size: 0.75rem;
+      color: var(--sage);
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--sage-light);
+      transition: all 0.2s;
+    }
+    .btn-view:hover { background: var(--sage-pale); }
+
+    .admin-body {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 28px 20px 60px;
+    }
+
+    /* ── 操作说明 ── */
+    .howto {
+      background: var(--sage-pale);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 28px;
+      font-size: 0.78rem;
+      color: var(--moss);
+      line-height: 1.8;
+    }
+    .howto strong { font-size: 0.82rem; }
+
+    /* ── Section title ── */
+    .section-title {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* ── 新增活动表单 ── */
+    .form-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+      margin-bottom: 32px;
+    }
+
+    .form-row { margin-bottom: 14px; }
+    .form-row label {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--text-mid);
+      margin-bottom: 5px;
+      letter-spacing: 0.04em;
+    }
+    .form-row input, .form-row select, .form-row textarea {
+      width: 100%;
+      padding: 9px 13px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--cream);
+      font-size: 0.82rem;
+      font-family: 'Noto Sans SC', sans-serif;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+      border-color: var(--sage);
+    }
+    .form-row textarea { resize: vertical; min-height: 72px; }
+
+    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* media list */
+    .media-list { margin-top: 10px; }
+    .media-item {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      background: var(--cream);
+      border-radius: 8px;
+      padding: 8px 10px;
+      margin-bottom: 8px;
+    }
+    .media-item input {
+      flex: 1;
+      padding: 7px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-size: 0.78rem;
+      font-family: 'Noto Sans SC', sans-serif;
+      background: var(--white);
+      outline: none;
+    }
+    .media-item input:focus { border-color: var(--sage); }
+    .media-item select {
+      width: 80px;
+      padding: 7px 6px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-size: 0.75rem;
+      background: var(--white);
+      outline: none;
+    }
+    .btn-del-media {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: none;
+      background: var(--red-pale);
+      color: var(--red);
+      font-size: 0.9rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .media-caption {
+      width: 120px !important;
+      flex-shrink: 0;
+    }
+
+    /* Buttons */
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 9px 20px;
+      border-radius: 22px;
+      border: none;
+      font-size: 0.78rem;
+      font-family: 'Noto Sans SC', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.04em;
+    }
+    .btn-primary { background: var(--sage); color: white; }
+    .btn-primary:hover { background: var(--moss); }
+    .btn-secondary { background: var(--sage-pale); color: var(--moss); }
+    .btn-secondary:hover { background: var(--sage-light); }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--sage-light);
+      color: var(--text-mid);
+    }
+    .btn-outline:hover { border-color: var(--sage); color: var(--moss); }
+    .btn-danger { background: var(--red-pale); color: var(--red); }
+    .btn-danger:hover { background: var(--red); color: white; }
+
+    /* ── 活动列表 ── */
+    .event-list { display: flex; flex-direction: column; gap: 12px; }
+    .event-row {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 14px 16px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .event-row-thumb {
+      width: 64px; height: 64px;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: var(--sage-pale);
+    }
+    .event-row-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .event-row-info { flex: 1; min-width: 0; }
+    .event-row-title {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+    .event-row-meta {
+      font-size: 0.7rem;
+      color: var(--text-light);
+      margin-bottom: 6px;
+    }
+    .event-row-actions { display: flex; gap: 6px; }
+    .btn-sm {
+      padding: 4px 12px;
+      font-size: 0.7rem;
+      border-radius: 14px;
+    }
+
+    /* JSON editor */
+    .json-section { margin-top: 36px; }
+    .json-editor {
+      width: 100%;
+      min-height: 280px;
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #1e1e1e;
+      color: #d4d4d4;
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      line-height: 1.6;
+      resize: vertical;
+      outline: none;
+    }
+    .json-editor:focus { border-color: var(--sage); }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px; left: 50%;
+      transform: translateX(-50%) translateY(60px);
+      background: var(--moss);
+      color: white;
+      padding: 10px 24px;
+      border-radius: 24px;
+      font-size: 0.8rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+      z-index: 999;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    @media (max-width: 480px) {
+      .form-grid-2 { grid-template-columns: 1fr; }
+      .media-caption { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="admin-header">
+  <div class="admin-logo">
+    Happy Time <small>管理后台</small>
+  </div>
+  <a href="index.html" class="btn-view">← 查看网站</a>
+</header>
+
+<div class="admin-body">
+
+  <!-- 说明 -->
+  <div class="howto">
+    <strong>📋 使用说明</strong><br>
+    1. 先把照片/视频上传到腾讯云COS，复制对象链接<br>
+    2. 在下方表单填写活动信息，粘贴媒体链接，点击「添加活动」<br>
+    3. 点击「💾 保存 data.json」下载文件，替换 GitHub 仓库里的同名文件<br>
+    4. 推送到 GitHub 后 Vercel 自动更新，1分钟内网站生效 ✅
+  </div>
+
+  <!-- 新增表单 -->
+  <div class="section-title">
+    <span>➕ 新增活动</span>
+  </div>
+  <div class="form-card">
+    <div class="form-grid-2">
+      <div class="form-row">
+        <label>活动名称 *</label>
+        <input type="text" id="fTitle" placeholder="例：五一广州聚餐">
+      </div>
+      <div class="form-row">
+        <label>日期 *</label>
+        <input type="date" id="fDate">
+      </div>
+    </div>
+    <div class="form-grid-2">
+      <div class="form-row">
+        <label>类型</label>
+        <select id="fType">
+          <option value="出游">🌿 出游</option>
+          <option value="聚餐">🍜 聚餐</option>
+          <option value="日常">☀️ 日常</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>地点</label>
+        <input type="text" id="fLocation" placeholder="例：广州天河">
+      </div>
+    </div>
+    <div class="form-row">
+      <label>简介（选填）</label>
+      <textarea id="fDesc" placeholder="一两句话描述这次活动…"></textarea>
+    </div>
+
+    <div class="form-row">
+      <label>照片/视频链接（每行一个COS链接）</label>
+      <div class="media-list" id="mediaList"></div>
+      <button class="btn btn-outline btn-sm" style="margin-top:8px" onclick="addMediaRow()">＋ 添加媒体</button>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="addEvent()">✓ 添加活动</button>
+      <button class="btn btn-outline" onclick="resetForm()">清空</button>
+    </div>
+  </div>
+
+  <!-- 活动列表 -->
+  <div class="section-title">
+    <span>📁 所有活动</span>
+    <span id="eventCount" style="font-size:0.75rem;color:var(--text-mid)"></span>
+  </div>
+  <div class="event-list" id="eventList"></div>
+
+  <!-- JSON 编辑器 -->
+  <div class="json-section">
+    <div class="section-title">
+      <span>⚙️ 高级：直接编辑 JSON</span>
+    </div>
+    <textarea class="json-editor" id="jsonEditor" spellcheck="false"></textarea>
+    <div class="btn-row" style="margin-top:12px">
+      <button class="btn btn-secondary" onclick="applyJson()">✓ 应用 JSON 修改</button>
+      <button class="btn btn-primary" onclick="saveJson()">💾 保存 data.json（下载）</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let events = [];
+
+// ── 加载数据 ──
+async function loadData() {
+  try {
+    const res = await fetch('data.json?t=' + Date.now());
+    const data = await res.json();
+    events = data.events || [];
+  } catch(e) {
+    events = [];
+  }
+  render();
+}
+
+function render() {
+  renderList();
+  renderJson();
+  document.getElementById('eventCount').textContent = `共 ${events.length} 个活动`;
+}
+
+function renderList() {
+  const container = document.getElementById('eventList');
+  if (!events.length) {
+    container.innerHTML = '<div style="text-align:center;padding:32px;color:var(--text-light);font-size:0.82rem;">暂无活动，从上方表单添加第一个吧 🌿</div>';
+    return;
+  }
+  const sorted = [...events].sort((a,b) => new Date(b.date) - new Date(a.date));
+  container.innerHTML = sorted.map(ev => {
+    const media = ev.media || [];
+    const thumb = media[0] ? (media[0].thumb || media[0].url) : '';
+    const typeMap = { '出游': '🌿', '聚餐': '🍜', '日常': '☀️' };
+    return `<div class="event-row">
+      <div class="event-row-thumb">
+        ${thumb ? `<img src="${thumb}" alt="">` : '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--sage-light)">${typeMap[ev.type]||'📸'}</div>'}
+      </div>
+      <div class="event-row-info">
+        <div class="event-row-title">${typeMap[ev.type]||''} ${ev.title}</div>
+        <div class="event-row-meta">${ev.date} · ${ev.location||''} · ${media.length} 个素材</div>
+        <div class="event-row-actions">
+          <button class="btn btn-secondary btn-sm" onclick="editEvent('${ev.id}')">编辑</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteEvent('${ev.id}')">删除</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderJson() {
+  document.getElementById('jsonEditor').value = JSON.stringify({ events }, null, 2);
+}
+
+// ── 媒体行 ──
+function addMediaRow(url='', caption='', type='photo') {
+  const list = document.getElementById('mediaList');
+  const div = document.createElement('div');
+  div.className = 'media-item';
+  div.innerHTML = `
+    <select onchange="">
+      <option value="photo" ${type==='photo'?'selected':''}>图片</option>
+      <option value="video" ${type==='video'?'selected':''}>视频</option>
+    </select>
+    <input type="text" placeholder="粘贴 COS 对象链接…" value="${url}">
+    <input type="text" class="media-caption" placeholder="描述（选填）" value="${caption}">
+    <button class="btn-del-media" onclick="this.parentElement.remove()">×</button>
+  `;
+  list.appendChild(div);
+}
+
+// ── 新增活动 ──
+function addEvent() {
+  const title = document.getElementById('fTitle').value.trim();
+  const date = document.getElementById('fDate').value;
+  if (!title || !date) { showToast('请填写活动名称和日期'); return; }
+
+  const mediaRows = document.querySelectorAll('#mediaList .media-item');
+  const media = [];
+  mediaRows.forEach(row => {
+    const sel = row.querySelector('select').value;
+    const url = row.querySelectorAll('input')[0].value.trim();
+    const caption = row.querySelectorAll('input')[1].value.trim();
+    if (url) media.push({ type: sel, url, thumb: url, caption });
+  });
+
+  const ev = {
+    id: 'event_' + Date.now(),
+    title,
+    date,
+    type: document.getElementById('fType').value,
+    location: document.getElementById('fLocation').value.trim(),
+    desc: document.getElementById('fDesc').value.trim(),
+    media
+  };
+
+  events.unshift(ev);
+  render();
+  resetForm();
+  showToast('✓ 活动已添加，记得保存 data.json');
+}
+
+function resetForm() {
+  ['fTitle','fDate','fLocation','fDesc'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('fType').value = '出游';
+  document.getElementById('mediaList').innerHTML = '';
+}
+
+// ── 删除活动 ──
+function deleteEvent(id) {
+  if (!confirm('确认删除这个活动？')) return;
+  events = events.filter(e => e.id !== id);
+  render();
+  showToast('已删除，记得保存 data.json');
+}
+
+// ── 编辑活动（跳转JSON编辑器定位） ──
+function editEvent(id) {
+  const ev = events.find(e => e.id === id);
+  if (!ev) return;
+  // 滚动到JSON编辑器
+  document.querySelector('.json-section').scrollIntoView({ behavior: 'smooth' });
+  showToast('在下方 JSON 编辑器中直接修改后点应用');
+}
+
+// ── JSON 编辑器 ──
+function applyJson() {
+  try {
+    const data = JSON.parse(document.getElementById('jsonEditor').value);
+    events = data.events || [];
+    renderList();
+    showToast('✓ JSON 已应用');
+  } catch(e) {
+    showToast('JSON 格式错误，请检查');
+  }
+}
+
+function saveJson() {
+  const content = JSON.stringify({ events }, null, 2);
+  const blob = new Blob([content], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'data.json';
+  a.click();
+  showToast('✓ data.json 已下载，上传到 GitHub 替换原文件');
+}
+
+// ── Toast ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// 初始化加一行媒体输入
+addMediaRow();
+loadData();
+</script>
+</body>
+</html>

@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Happy Time · 快乐时光</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+SC:wght@300;400;600&family=Noto+Sans+SC:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f9f6ef;
+      --warm: #f2ede2;
+      --sage: #7a9e76;
+      --sage-light: #b8d1b4;
+      --sage-pale: #e4eed3;
+      --moss: #4a6e45;
+      --bark: #8b6f47;
+      --text: #2a2a2a;
+      --text-mid: #5a5a5a;
+      --text-light: #9a9a9a;
+      --white: #ffffff;
+      --shadow: rgba(74,110,69,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      font-family: 'Noto Sans SC', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ═══════════════════════════════
+       HEADER
+    ═══════════════════════════════ */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(249,246,239,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(122,158,118,0.2);
+      padding: 0 20px;
+    }
+
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+
+    .site-logo {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--moss);
+      letter-spacing: 0.02em;
+    }
+
+    .site-logo span {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 0.75rem;
+      font-style: normal;
+      color: var(--text-light);
+      display: block;
+      letter-spacing: 0.15em;
+      margin-top: -2px;
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 6px;
+    }
+
+    .nav-btn {
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: none;
+      background: transparent;
+      font-size: 0.78rem;
+      font-family: 'Noto Sans SC', sans-serif;
+      color: var(--text-mid);
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-btn.active, .nav-btn:hover {
+      background: var(--sage-pale);
+      color: var(--moss);
+    }
+
+    /* ═══════════════════════════════
+       HERO
+    ═══════════════════════════════ */
+    .hero {
+      padding: 48px 20px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse, rgba(184,209,180,0.35) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      color: var(--sage);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      font-weight: 300;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 8vw, 3.6rem);
+      font-style: italic;
+      color: var(--moss);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .hero-subtitle {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      margin-bottom: 28px;
+    }
+
+    /* stats row */
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--moss);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.65rem;
+      color: var(--text-light);
+      letter-spacing: 0.1em;
+      margin-top: 2px;
+    }
+
+    .stat-divider {
+      width: 1px;
+      background: var(--sage-light);
+      height: 36px;
+      align-self: center;
+    }
+
+    /* ═══════════════════════════════
+       FILTER BAR
+    ═══════════════════════════════ */
+    .filter-section {
+      padding: 0 20px 24px;
+    }
+
+    .filter-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .filter-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--text-light);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .filter-chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      padding: 6px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--sage-light);
+      background: transparent;
+      font-size: 0.75rem;
+      font-family: 'Noto Sans SC', sans-serif;
+      color: var(--text-mid);
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.05em;
+    }
+
+    .chip.active {
+      background: var(--sage);
+      border-color: var(--sage);
+      color: white;
+    }
+
+    .chip:hover:not(.active) {
+      border-color: var(--sage);
+      color: var(--moss);
+    }
+
+    /* ═══════════════════════════════
+       TIMELINE / GRID VIEWS
+    ═══════════════════════════════ */
+    .content-area {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* Timeline view */
+    .timeline-view { display: block; }
+    .grid-view { display: none; }
+
+    .timeline-view.hidden { display: none; }
+    .grid-view.active { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+    /* Timeline item */
+    .timeline-item {
+      display: flex;
+      gap: 0;
+      margin-bottom: 40px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .timeline-item:nth-child(1) { animation-delay: 0.05s; }
+    .timeline-item:nth-child(2) { animation-delay: 0.1s; }
+    .timeline-item:nth-child(3) { animation-delay: 0.15s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .timeline-spine {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 6px;
+      margin-right: 16px;
+      flex-shrink: 0;
+    }
+
+    .spine-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--sage);
+      border: 2px solid var(--cream);
+      box-shadow: 0 0 0 2px var(--sage-light);
+      flex-shrink: 0;
+    }
+
+    .spine-line {
+      width: 1px;
+      flex: 1;
+      background: linear-gradient(to bottom, var(--sage-light), transparent);
+      margin-top: 6px;
+      min-height: 40px;
+    }
+
+    .timeline-card {
+      flex: 1;
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px var(--shadow);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .timeline-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px var(--shadow);
+    }
+
+    /* Card cover */
+    .card-cover {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .card-cover-grid {
+      display: grid;
+      height: 240px;
+    }
+
+    .card-cover-grid.count-1 { grid-template-columns: 1fr; }
+    .card-cover-grid.count-2 { grid-template-columns: 1fr 1fr; }
+    .card-cover-grid.count-3 { grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; }
+    .card-cover-grid.count-3 .cover-img:first-child { grid-row: 1 / 3; }
+    .card-cover-grid.count-4plus { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+
+    .cover-img {
+      position: relative;
+      overflow: hidden;
+      background: var(--warm);
+    }
+
+    .cover-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .timeline-card:hover .cover-img img {
+      transform: scale(1.04);
+    }
+
+    .cover-img.has-video::after {
+      content: '▶';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: white;
+      background: rgba(0,0,0,0.25);
+    }
+
+    .cover-more {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* Card meta */
+    .card-meta {
+      padding: 16px 18px 18px;
+    }
+
+    .card-date-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .card-date {
+      font-size: 0.68rem;
+      color: var(--sage);
+      letter-spacing: 0.1em;
+      font-weight: 400;
+    }
+
+    .card-type-badge {
+      font-size: 0.6rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: var(--sage-pale);
+      color: var(--moss);
+      letter-spacing: 0.05em;
+    }
+
+    .card-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 5px;
+      line-height: 1.35;
+    }
+
+    .card-desc {
+      font-size: 0.78rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--warm);
+    }
+
+    .card-location {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.7rem;
+      color: var(--text-light);
+    }
+
+    .card-location svg { flex-shrink: 0; }
+
+    .card-counts {
+      display: flex;
+      gap: 10px;
+    }
+
+    .count-badge {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 0.68rem;
+      color: var(--text-light);
+    }
+
+    /* Grid card */
+    .grid-card {
+      background: var(--white);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px var(--shadow);
+      cursor: pointer;
+      transition: transform 0.22s, box-shadow 0.22s;
+      animation: fadeUp 0.4s ease both;
+    }
+
+    .grid-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px var(--shadow);
+    }
+
+    .grid-cover {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: var(--warm);
+      position: relative;
+    }
+
+    .grid-cover img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s;
+    }
+
+    .grid-card:hover .grid-cover img { transform: scale(1.06); }
+
+    .grid-info {
+      padding: 12px 14px 14px;
+    }
+
+    .grid-date { font-size: 0.62rem; color: var(--sage); letter-spacing: 0.1em; margin-bottom: 3px; }
+    .grid-title { font-family: 'Noto Serif SC', serif; font-size: 0.88rem; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+    .grid-loc { font-size: 0.67rem; color: var(--text-light); }
+
+    /* ═══════════════════════════════
+       LIGHTBOX
+    ═══════════════════════════════ */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0,0,0,0.92);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox.open { display: flex; }
+
+    .lb-header {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+      z-index: 10;
+    }
+
+    .lb-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.85);
+      font-weight: 300;
+    }
+
+    .lb-close {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .lb-close:hover { background: rgba(255,255,255,0.3); }
+
+    .lb-main {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      flex: 1;
+      padding: 70px 60px 80px;
+      position: relative;
+    }
+
+    .lb-img {
+      max-width: 100%;
+      max-height: 75vh;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    .lb-video {
+      max-width: 100%;
+      max-height: 75vh;
+      border-radius: 4px;
+      outline: none;
+    }
+
+    .lb-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      border: none;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+      z-index: 10;
+    }
+
+    .lb-arrow:hover { background: rgba(255,255,255,0.25); }
+    .lb-prev { left: 12px; }
+    .lb-next { right: 12px; }
+    .lb-arrow.hidden { opacity: 0; pointer-events: none; }
+
+    .lb-footer {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 14px 20px;
+      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .lb-counter { font-size: 0.75rem; color: rgba(255,255,255,0.6); letter-spacing: 0.1em; }
+
+    .lb-thumbs {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      max-width: calc(100% - 80px);
+      scrollbar-width: none;
+    }
+
+    .lb-thumbs::-webkit-scrollbar { display: none; }
+
+    .lb-thumb {
+      width: 44px; height: 44px;
+      border-radius: 6px;
+      overflow: hidden;
+      flex-shrink: 0;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 0.2s;
+      border: 2px solid transparent;
+    }
+
+    .lb-thumb.active { opacity: 1; border-color: var(--sage-light); }
+    .lb-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ═══════════════════════════════
+       EMPTY STATE
+    ═══════════════════════════════ */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-light);
+    }
+
+    .empty-icon { font-size: 2.5rem; margin-bottom: 12px; opacity: 0.4; }
+    .empty-text { font-size: 0.85rem; }
+
+    /* ═══════════════════════════════
+       FOOTER
+    ═══════════════════════════════ */
+    .site-footer {
+      text-align: center;
+      padding: 24px 20px;
+      border-top: 1px solid rgba(122,158,118,0.15);
+      font-size: 0.68rem;
+      color: var(--text-light);
+      letter-spacing: 0.1em;
+    }
+
+    /* ═══════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════ */
+    @media (max-width: 480px) {
+      .grid-view.active { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .card-cover-grid { height: 200px; }
+      .lb-main { padding: 60px 40px 70px; }
+      .lb-arrow { width: 36px; height: 36px; font-size: 0.9rem; }
+      .lb-prev { left: 6px; }
+      .lb-next { right: 6px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="site-logo">
+      Happy Time
+      <span>快乐时光 · 我们的回忆</span>
+    </div>
+    <nav class="header-nav">
+      <button class="nav-btn active" onclick="setView('timeline', this)">时间线</button>
+      <button class="nav-btn" onclick="setView('grid', this)">相册</button>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Our Memories</div>
+  <h1 class="hero-title">Happy Time</h1>
+  <p class="hero-subtitle">记录每一次相聚，珍藏每一个瞬间</p>
+  <div class="hero-stats" id="heroStats">
+    <div class="stat-item">
+      <div class="stat-num" id="statEvents">0</div>
+      <div class="stat-label">次活动</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-num" id="statPhotos">0</div>
+      <div class="stat-label">张照片</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-num" id="statVideos">0</div>
+      <div class="stat-label">个视频</div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER -->
+<section class="filter-section">
+  <div class="filter-inner">
+    <div class="filter-chips" id="filterChips">
+      <button class="chip active" onclick="filterBy('all', this)">全部</button>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<main class="content-area">
+  <div class="timeline-view" id="timelineView"></div>
+  <div class="grid-view" id="gridView"></div>
+</main>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lb-header">
+    <div class="lb-title" id="lbTitle"></div>
+    <button class="lb-close" onclick="closeLightbox()">✕</button>
+  </div>
+  <div class="lb-main">
+    <button class="lb-arrow lb-prev" id="lbPrev" onclick="lbNavigate(-1)">‹</button>
+    <img class="lb-img" id="lbImg" src="" alt="" style="display:none">
+    <video class="lb-video" id="lbVideo" controls style="display:none"></video>
+    <button class="lb-arrow lb-next" id="lbNext" onclick="lbNavigate(1)">›</button>
+  </div>
+  <div class="lb-footer">
+    <div class="lb-counter" id="lbCounter"></div>
+    <div class="lb-thumbs" id="lbThumbs"></div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  Happy Time · 快乐时光 · 愿每一次相聚都被铭记
+</footer>
+
+<script>
+// ── 数据从 data.json 加载 ──
+let allEvents = [];
+let currentFilter = 'all';
+let currentView = 'timeline';
+let lbItems = [];
+let lbIndex = 0;
+
+async function loadData() {
+  try {
+    const res = await fetch('data.json?t=' + Date.now());
+    const data = await res.json();
+    allEvents = data.events || [];
+  } catch(e) {
+    // 如果 data.json 不存在，使用内嵌示例数据
+    allEvents = FALLBACK_DATA.events;
+  }
+  init();
+}
+
+function init() {
+  buildStats();
+  buildFilters();
+  renderAll();
+}
+
+function buildStats() {
+  const total = allEvents.length;
+  let photos = 0, videos = 0;
+  allEvents.forEach(ev => {
+    (ev.media || []).forEach(m => {
+      if (m.type === 'video') videos++;
+      else photos++;
+    });
+  });
+  animateNum('statEvents', total);
+  animateNum('statPhotos', photos);
+  animateNum('statVideos', videos);
+}
+
+function animateNum(id, target) {
+  const el = document.getElementById(id);
+  let cur = 0;
+  const step = Math.max(1, Math.ceil(target / 20));
+  const t = setInterval(() => {
+    cur = Math.min(cur + step, target);
+    el.textContent = cur;
+    if (cur >= target) clearInterval(t);
+  }, 50);
+}
+
+function buildFilters() {
+  const types = new Set();
+  allEvents.forEach(ev => { if (ev.type) types.add(ev.type); });
+  const chips = document.getElementById('filterChips');
+  const typeMap = { '出游': '🌿 出游', '聚餐': '🍜 聚餐', '日常': '☀️ 日常' };
+  types.forEach(t => {
+    const btn = document.createElement('button');
+    btn.className = 'chip';
+    btn.textContent = typeMap[t] || t;
+    btn.onclick = () => filterBy(t, btn);
+    chips.appendChild(btn);
+  });
+}
+
+function filterBy(type, btn) {
+  currentFilter = type;
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  renderAll();
+}
+
+function setView(view, btn) {
+  currentView = view;
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const tv = document.getElementById('timelineView');
+  const gv = document.getElementById('gridView');
+
+  if (view === 'timeline') {
+    tv.classList.remove('hidden');
+    gv.classList.remove('active');
+  } else {
+    tv.classList.add('hidden');
+    gv.classList.add('active');
+  }
+  renderAll();
+}
+
+function getFiltered() {
+  if (currentFilter === 'all') return allEvents;
+  return allEvents.filter(e => e.type === currentFilter);
+}
+
+function renderAll() {
+  const events = getFiltered();
+  renderTimeline(events);
+  renderGrid(events);
+}
+
+function renderTimeline(events) {
+  const container = document.getElementById('timelineView');
+  if (!events.length) {
+    container.innerHTML = '<div class="empty-state"><div class="empty-icon">🌿</div><div class="empty-text">暂无活动记录</div></div>';
+    return;
+  }
+
+  // sort by date desc
+  const sorted = [...events].sort((a,b) => new Date(b.date) - new Date(a.date));
+
+  container.innerHTML = sorted.map((ev, i) => {
+    const media = ev.media || [];
+    const photos = media.filter(m => m.type !== 'video');
+    const videos = media.filter(m => m.type === 'video');
+    const coverMedia = media.slice(0, 4);
+    const extra = media.length > 4 ? media.length - 4 : 0;
+    const count = Math.min(coverMedia.length, 4);
+    const countClass = count === 1 ? 'count-1' : count === 2 ? 'count-2' : count === 3 ? 'count-3' : 'count-4plus';
+
+    const coverHTML = coverMedia.map((m, mi) => {
+      const isLast = mi === 3 && extra > 0;
+      const thumb = m.thumb || m.url;
+      return `<div class="cover-img${m.type==='video'?' has-video':''}">
+        <img src="${thumb}" alt="${m.caption||''}" loading="lazy" onclick="openLightbox('${ev.id}', ${mi})">
+        ${isLast ? `<div class="cover-more">+${extra}</div>` : ''}
+      </div>`;
+    }).join('');
+
+    const typeMap = { '出游': '🌿 出游', '聚餐': '🍜 聚餐', '日常': '☀️ 日常' };
+
+    return `<div class="timeline-item">
+      <div class="timeline-spine">
+        <div class="spine-dot"></div>
+        <div class="spine-line"></div>
+      </div>
+      <div class="timeline-card">
+        <div class="card-cover">
+          <div class="card-cover-grid ${countClass}">${coverHTML}</div>
+        </div>
+        <div class="card-meta">
+          <div class="card-date-row">
+            <span class="card-date">${formatDate(ev.date)}</span>
+            ${ev.type ? `<span class="card-type-badge">${typeMap[ev.type]||ev.type}</span>` : ''}
+          </div>
+          <div class="card-title">${ev.title}</div>
+          ${ev.desc ? `<div class="card-desc">${ev.desc}</div>` : ''}
+          <div class="card-footer">
+            <div class="card-location">
+              <svg width="11" height="13" viewBox="0 0 11 13" fill="none">
+                <path d="M5.5 0C3.01 0 1 2.01 1 4.5c0 3.37 4.5 8.5 4.5 8.5S10 7.87 10 4.5C10 2.01 7.99 0 5.5 0zm0 6.25A1.75 1.75 0 1 1 5.5 2.75a1.75 1.75 0 0 1 0 3.5z" fill="currentColor"/>
+              </svg>
+              ${ev.location || ''}
+            </div>
+            <div class="card-counts">
+              ${photos.length ? `<span class="count-badge">📸 ${photos.length}</span>` : ''}
+              ${videos.length ? `<span class="count-badge">🎬 ${videos.length}</span>` : ''}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderGrid(events) {
+  const container = document.getElementById('gridView');
+  const sorted = [...events].sort((a,b) => new Date(b.date) - new Date(a.date));
+
+  container.innerHTML = sorted.map((ev, i) => {
+    const media = ev.media || [];
+    const first = media[0];
+    const thumb = first ? (first.thumb || first.url) : '';
+    return `<div class="grid-card" style="animation-delay:${i*0.05}s" onclick="openLightbox('${ev.id}', 0)">
+      <div class="grid-cover">
+        ${thumb ? `<img src="${thumb}" alt="${ev.title}" loading="lazy">` : '<div style="width:100%;height:100%;background:var(--sage-pale)"></div>'}
+      </div>
+      <div class="grid-info">
+        <div class="grid-date">${formatDate(ev.date)}</div>
+        <div class="grid-title">${ev.title}</div>
+        <div class="grid-loc">${ev.location || ''} · ${(ev.media||[]).length} 个素材</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── Lightbox ──
+function openLightbox(eventId, startIndex) {
+  const ev = allEvents.find(e => e.id === eventId);
+  if (!ev) return;
+  lbItems = ev.media || [];
+  lbIndex = startIndex;
+  document.getElementById('lbTitle').textContent = ev.title;
+  buildThumbs();
+  showLbItem(lbIndex);
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+  const vid = document.getElementById('lbVideo');
+  vid.pause();
+}
+
+function buildThumbs() {
+  const container = document.getElementById('lbThumbs');
+  container.innerHTML = lbItems.map((m, i) => {
+    const thumb = m.thumb || m.url;
+    return `<div class="lb-thumb${i===lbIndex?' active':''}" id="lbThumb${i}" onclick="showLbItem(${i})">
+      <img src="${thumb}" alt="">
+    </div>`;
+  }).join('');
+}
+
+function showLbItem(idx) {
+  lbIndex = idx;
+  const item = lbItems[idx];
+  const img = document.getElementById('lbImg');
+  const vid = document.getElementById('lbVideo');
+
+  document.querySelectorAll('.lb-thumb').forEach((t,i) => t.classList.toggle('active', i===idx));
+  document.getElementById('lbCounter').textContent = `${idx+1} / ${lbItems.length}`;
+
+  const prev = document.getElementById('lbPrev');
+  const next = document.getElementById('lbNext');
+  prev.classList.toggle('hidden', idx === 0);
+  next.classList.toggle('hidden', idx === lbItems.length - 1);
+
+  if (item.type === 'video') {
+    img.style.display = 'none';
+    vid.style.display = 'block';
+    vid.src = item.url;
+    vid.load();
+  } else {
+    vid.pause();
+    vid.style.display = 'none';
+    img.style.display = 'block';
+    img.src = item.url;
+  }
+
+  // scroll thumb into view
+  const thumb = document.getElementById('lbThumb' + idx);
+  if (thumb) thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+}
+
+function lbNavigate(dir) {
+  const next = lbIndex + dir;
+  if (next >= 0 && next < lbItems.length) showLbItem(next);
+}
+
+// keyboard nav
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'ArrowLeft') lbNavigate(-1);
+  if (e.key === 'ArrowRight') lbNavigate(1);
+  if (e.key === 'Escape') closeLightbox();
+});
+
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr);
+  return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
+}
+
+// ── 内嵌备用数据（data.json 不存在时使用）──
+const FALLBACK_DATA = {
+  events: [
+    {
+      id: "event_001",
+      title: "粤赣三日自驾游",
+      date: "2026-05-02",
+      type: "出游",
+      location: "广东韶关 · 江西赣州",
+      desc: "深圳出发，途经珠玑古巷、梅关古道、丹霞山，感受粤赣山水之美。",
+      media: [
+        {
+          type: "photo",
+          url: "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260505112345_506_319.jpg",
+          thumb: "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260505112345_506_319.jpg",
+          caption: "满堂客家大围"
+        }
+      ]
+    }
+  ]
+};
+
+// 启动
+loadData();
+</script>
+</body>
+</html>

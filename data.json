@@ -11,12 +11,6 @@
       "cosFolder": "2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义",
       "media": [
         {
-          "type": "video",
-          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/8b852b56f5b2d7ace3f8a9806c5e0332.mp4",
-          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/8b852b56f5b2d7ace3f8a9806c5e0332.mp4",
-          "caption": ""
-        },
-        {
           "type": "photo",
           "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/微信图片_20260505094753_491_319.jpg",
           "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/微信图片_20260505094753_491_319.jpg",
@@ -50,6 +44,12 @@
           "type": "photo",
           "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/微信图片_20260505153519_1159_319.jpg",
           "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/微信图片_20260505153519_1159_319.jpg",
+          "caption": ""
+        },
+        {
+          "type": "video",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/8b852b56f5b2d7ace3f8a9806c5e0332.mp4",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/8b852b56f5b2d7ace3f8a9806c5e0332.mp4",
           "caption": ""
         }
       ]

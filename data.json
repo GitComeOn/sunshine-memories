@@ -1,18 +1,86 @@
 {
   "events": [
     {
-      "id": "event_001",
-      "title": "粤赣三日自驾游",
+      "id": "cos_2026_05_02____________________",
+      "title": "粤赣三日自驾",
       "date": "2026-05-02",
       "type": "出游",
-      "location": "广东韶关 · 江西赣州",
-      "desc": "深圳出发，途经珠玑古巷、梅关古道、崇义温泉、丹霞山，感受粤赣山水之美。",
+      "location": "广东韶关·江西崇义",
+      "desc": "",
+      "cover": "",
+      "cosFolder": "2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义",
       "media": [
         {
           "type": "photo",
-          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260505112345_506_319.jpg",
-          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260505112345_506_319.jpg",
-          "caption": "满堂客家大围"
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/微信图片_20260505112316_503_319.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/微信图片_20260505112316_503_319.jpg",
+          "caption": ""
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/微信图片_20260505112345_506_319.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/微信图片_20260505112345_506_319.jpg",
+          "caption": ""
+        }
+      ]
+    },
+    {
+      "id": "cos_2026_02_23_______________",
+      "title": "春节同学相聚",
+      "date": "2026-02-23",
+      "type": "聚会",
+      "location": "广东深圳",
+      "desc": "",
+      "cover": "",
+      "cosFolder": "2026-02-23_聚会_春节同学相聚_广东深圳",
+      "media": [
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-02-23_聚会_春节同学相聚_广东深圳/微信图片_20260505160409_88_98.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-02-23_聚会_春节同学相聚_广东深圳/微信图片_20260505160409_88_98.jpg",
+          "caption": ""
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-02-23_聚会_春节同学相聚_广东深圳/微信图片_20260505160444_89_98.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-02-23_聚会_春节同学相聚_广东深圳/微信图片_20260505160444_89_98.jpg",
+          "caption": ""
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-02-23_聚会_春节同学相聚_广东深圳/微信图片_20260505160452_90_98.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-02-23_聚会_春节同学相聚_广东深圳/微信图片_20260505160452_90_98.jpg",
+          "caption": ""
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-02-23_聚会_春节同学相聚_广东深圳/微信图片_20260505160511_91_98.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-02-23_聚会_春节同学相聚_广东深圳/微信图片_20260505160511_91_98.jpg",
+          "caption": ""
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-02-23_聚会_春节同学相聚_广东深圳/微信图片_20260505160523_92_98.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-02-23_聚会_春节同学相聚_广东深圳/微信图片_20260505160523_92_98.jpg",
+          "caption": ""
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-02-23_聚会_春节同学相聚_广东深圳/微信图片_20260505160549_93_98.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-02-23_聚会_春节同学相聚_广东深圳/微信图片_20260505160549_93_98.jpg",
+          "caption": ""
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-02-23_聚会_春节同学相聚_广东深圳/微信图片_20260505160557_94_98.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-02-23_聚会_春节同学相聚_广东深圳/微信图片_20260505160557_94_98.jpg",
+          "caption": ""
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-02-23_聚会_春节同学相聚_广东深圳/微信图片_20260505160606_95_98.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-02-23_聚会_春节同学相聚_广东深圳/微信图片_20260505160606_95_98.jpg",
+          "caption": ""
         }
       ]
     }

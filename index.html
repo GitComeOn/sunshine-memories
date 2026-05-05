@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Time · 快乐时光</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+SC:wght@300;400;600&family=Noto+Sans+SC:wght@300;400&display=swap" rel="stylesheet">
   <style>
@@ -543,8 +543,10 @@
     .lb-video {
       max-width: 100%;
       max-height: 75vh;
+      width: 100%;
       border-radius: 4px;
       outline: none;
+      background: #000;
     }
 
     .lb-arrow {
@@ -704,7 +706,7 @@
   <div class="lb-main">
     <button class="lb-arrow lb-prev" id="lbPrev" onclick="lbNavigate(-1)">‹</button>
     <img class="lb-img" id="lbImg" src="" alt="" style="display:none">
-    <video class="lb-video" id="lbVideo" controls style="display:none"></video>
+    <video class="lb-video" id="lbVideo" controls playsinline webkit-playsinline x5-playsinline style="display:none"></video>
     <button class="lb-arrow lb-next" id="lbNext" onclick="lbNavigate(1)">›</button>
   </div>
   <div class="lb-footer">
@@ -976,6 +978,24 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight') lbNavigate(1);
   if (e.key === 'Escape') closeLightbox();
 });
+
+// 手机触摸滑动切换
+let touchStartX = 0;
+let touchStartY = 0;
+document.getElementById('lightbox').addEventListener('touchstart', e => {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+
+document.getElementById('lightbox').addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  const dy = e.changedTouches[0].clientY - touchStartY;
+  // 水平滑动距离 > 50px 且大于垂直方向，才触发切换
+  if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+    if (dx < 0) lbNavigate(1);  // 左滑 → 下一张
+    else lbNavigate(-1);         // 右滑 → 上一张
+  }
+}, { passive: true });
 
 function formatDate(dateStr) {
   if (!dateStr) return '';

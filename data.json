@@ -12,13 +12,6 @@
       "media": [
         {
           "type": "photo",
-          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/人物/微信图片_20260505112345_506_319.jpg",
-          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/人物/微信图片_20260505112345_506_319.jpg",
-          "caption": "",
-          "category": "人物"
-        },
-        {
-          "type": "photo",
           "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/人物/微信图片_20260502162234_970_319.jpg",
           "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/人物/微信图片_20260502162234_970_319.jpg",
           "caption": "",
@@ -33,15 +26,15 @@
         },
         {
           "type": "photo",
-          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/人物/微信图片_20260503092409_1035_319.jpg",
-          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/人物/微信图片_20260503092409_1035_319.jpg",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/人物/微信图片_20260503091540_1021_319.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/人物/微信图片_20260503091540_1021_319.jpg",
           "caption": "",
           "category": "人物"
         },
         {
           "type": "photo",
-          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/人物/微信图片_20260503092540_1050_319.jpg",
-          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/人物/微信图片_20260503092540_1050_319.jpg",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/人物/微信图片_20260503092409_1035_319.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/人物/微信图片_20260503092409_1035_319.jpg",
           "caption": "",
           "category": "人物"
         },
@@ -252,6 +245,13 @@
           "type": "photo",
           "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/人物/微信图片_20260505112316_503_319.jpg",
           "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/人物/微信图片_20260505112316_503_319.jpg",
+          "caption": "",
+          "category": "人物"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/人物/微信图片_20260505112345_506_319.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义/人物/微信图片_20260505112345_506_319.jpg",
           "caption": "",
           "category": "人物"
         },
@@ -1250,7 +1250,7 @@
       "date": "2026-02-23",
       "type": "聚会",
       "location": "广东深圳",
-      "desc": "2026年春节两位,常居海外的大学同学来到深圳相聚，同时其它和深圳有缘的同学也应邀参加，难得相聚",
+      "desc": "2026年春节，两位常居海外的大学同学来到深圳相聚，同时其它和深圳有缘的同学也应邀参加，难得相聚",
       "cover": "",
       "cosFolder": "2026-02-23_聚会_春节同学相聚_广东深圳",
       "media": [

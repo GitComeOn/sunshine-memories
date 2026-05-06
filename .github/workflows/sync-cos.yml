@@ -1,0 +1,39 @@
+name: 同步香港COS
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'data.json'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 触发腾讯云函数同步香港COS
+        run: |
+          pip install tencentcloud-sdk-python-scf -q
+          python3 << 'EOF'
+          import json
+          from tencentcloud.common import credential
+          from tencentcloud.scf.v20180416 import scf_client, models
+
+          cred = credential.Credential(
+              "${{ secrets.TENCENT_SECRET_ID }}",
+              "${{ secrets.TENCENT_SECRET_KEY }}"
+          )
+
+          client = scf_client.ScfClient(cred, "ap-guangzhou")
+          req = models.InvokeRequest()
+          req.FunctionName = "sync-memories"
+          req.Namespace = "default"
+          req.InvocationType = "RequestResponse"
+
+          resp = client.Invoke(req)
+          result = json.loads(resp.Result.RetMsg)
+          print("同步结果:", result)
+
+          if result.get("code") != 0:
+              raise Exception("同步失败: " + result.get("msg", "未知错误"))
+          EOF

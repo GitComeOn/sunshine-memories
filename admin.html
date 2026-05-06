@@ -6,369 +6,421 @@
   <title>Happy Time · 管理后台</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --cream: #f9f6ef; --sage: #7a9e76; --sage-light: #b8d1b4; --sage-pale: #e4eed3;
-      --moss: #4a6e45; --text: #2a2a2a; --text-mid: #5a5a5a; --text-light: #9a9a9a;
-      --white: #ffffff; --border: #e5e0d5; --red: #d96b6b; --red-pale: #fdeaea;
-      --blue: #4a7fa5; --blue-pale: #e8f2f9;
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --cream:#f9f6ef;--sage:#7a9e76;--sage-light:#b8d1b4;--sage-pale:#e4eed3;
+      --moss:#4a6e45;--text:#2a2a2a;--text-mid:#5a5a5a;--text-light:#9a9a9a;
+      --white:#ffffff;--border:#e5e0d5;--red:#d96b6b;--red-pale:#fdeaea;
     }
-    body { background: var(--cream); font-family: 'Noto Sans SC', sans-serif; color: var(--text); min-height: 100vh; }
-    .admin-header { background: var(--white); border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 50; }
-    .admin-logo { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2rem; color: var(--moss); }
-    .admin-logo small { font-style: normal; font-family: 'Noto Sans SC', sans-serif; font-size: 0.7rem; color: var(--text-light); margin-left: 8px; }
-    .btn-view { font-size: 0.75rem; color: var(--sage); text-decoration: none; padding: 6px 14px; border-radius: 20px; border: 1px solid var(--sage-light); transition: all 0.2s; }
-    .btn-view:hover { background: var(--sage-pale); }
-    .admin-body { max-width: 860px; margin: 0 auto; padding: 28px 20px 60px; }
+    body{background:var(--cream);font-family:'Noto Sans SC',sans-serif;color:var(--text);min-height:100vh}
 
-    /* GitHub card */
-    .github-card { border-radius: 14px; padding: 16px 18px; margin-bottom: 24px; }
-    .github-card.disconnected { border: 1.5px solid var(--border); background: var(--white); }
-    .github-card.connected { border: 1.5px solid var(--sage); background: var(--sage-pale); }
-    .gh-title { font-size: 0.82rem; font-weight: 500; margin-bottom: 4px; }
-    .gh-desc { font-size: 0.72rem; color: var(--text-light); margin-bottom: 12px; line-height: 1.5; }
-    .gh-row { display: flex; gap: 8px; }
-    .gh-row input { flex: 1; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border); font-size: 0.8rem; font-family: 'Noto Sans SC', sans-serif; background: var(--cream); outline: none; }
-    .gh-row input:focus { border-color: var(--sage); }
-    .gh-hint { font-size: 0.67rem; color: var(--text-light); margin-top: 8px; }
-    .gh-status { display: flex; align-items: center; justify-content: space-between; font-size: 0.82rem; color: var(--moss); }
+    /* ── 登录 ── */
+    .login-wrap{
+      display:flex;align-items:center;justify-content:center;
+      min-height:100vh;background:var(--cream);
+    }
+    .login-card{
+      background:var(--white);border-radius:20px;padding:40px 36px;
+      box-shadow:0 4px 32px rgba(74,110,69,0.12);text-align:center;width:320px;
+    }
+    .login-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:1.8rem;color:var(--moss);margin-bottom:6px}
+    .login-sub{font-size:0.75rem;color:var(--text-light);letter-spacing:0.1em;margin-bottom:28px}
+    .login-card input{
+      width:100%;padding:11px 14px;border-radius:10px;border:1.5px solid var(--border);
+      font-size:0.9rem;font-family:'Noto Sans SC',sans-serif;background:var(--cream);
+      outline:none;text-align:center;letter-spacing:0.1em;margin-bottom:14px;
+      transition:border-color 0.2s;
+    }
+    .login-card input:focus{border-color:var(--sage)}
+    .login-err{font-size:0.75rem;color:var(--red);margin-bottom:10px;min-height:18px}
 
-    .section-title { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; }
-    .form-card { background: var(--white); border-radius: 16px; padding: 20px; box-shadow: 0 1px 8px rgba(0,0,0,0.06); margin-bottom: 20px; }
-    .form-row { margin-bottom: 14px; }
-    .form-row label { display: block; font-size: 0.72rem; color: var(--text-mid); margin-bottom: 5px; }
-    .form-row input, .form-row select, .form-row textarea { width: 100%; padding: 9px 13px; border-radius: 8px; border: 1px solid var(--border); background: var(--cream); font-size: 0.82rem; font-family: 'Noto Sans SC', sans-serif; color: var(--text); outline: none; transition: border-color 0.2s; }
-    .form-row input:focus, .form-row select:focus, .form-row textarea:focus { border-color: var(--sage); }
-    .form-row textarea { resize: vertical; min-height: 72px; }
-    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .media-list { margin-top: 10px; }
-    .media-item { display: flex; gap: 8px; align-items: center; background: var(--cream); border-radius: 8px; padding: 8px 10px; margin-bottom: 8px; }
-    .media-item input { flex: 1; padding: 7px 10px; border-radius: 6px; border: 1px solid var(--border); font-size: 0.78rem; font-family: 'Noto Sans SC', sans-serif; background: var(--white); outline: none; }
-    .media-item input:focus { border-color: var(--sage); }
-    .media-item select { width: 76px; padding: 7px 4px; border-radius: 6px; border: 1px solid var(--border); font-size: 0.73rem; background: var(--white); outline: none; }
-    .media-caption { width: 110px !important; flex-shrink: 0; }
-    .btn-del-media { width: 28px; height: 28px; border-radius: 50%; border: none; background: var(--red-pale); color: var(--red); font-size: 0.9rem; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    /* ── 公共 ── */
+    .admin-header{
+      background:var(--white);border-bottom:1px solid var(--border);
+      padding:0 24px;display:flex;align-items:center;justify-content:space-between;
+      height:56px;position:sticky;top:0;z-index:50;
+    }
+    .admin-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;color:var(--moss)}
+    .admin-logo small{font-style:normal;font-family:'Noto Sans SC',sans-serif;font-size:0.7rem;color:var(--text-light);margin-left:8px}
+    .header-right{display:flex;align-items:center;gap:12px}
+    .btn-view{font-size:0.75rem;color:var(--sage);text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid var(--sage-light);transition:all 0.2s}
+    .btn-view:hover{background:var(--sage-pale)}
+    .btn-logout{font-size:0.72rem;color:var(--text-light);cursor:pointer;padding:4px 8px;border-radius:8px;border:none;background:transparent}
+    .btn-logout:hover{color:var(--red)}
 
-    .btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
-    .btn { padding: 9px 20px; border-radius: 22px; border: none; font-size: 0.78rem; font-family: 'Noto Sans SC', sans-serif; cursor: pointer; transition: all 0.2s; }
-    .btn-primary { background: var(--sage); color: white; }
-    .btn-primary:hover { background: var(--moss); }
-    .btn-outline { background: transparent; border: 1px solid var(--sage-light); color: var(--text-mid); }
-    .btn-outline:hover { border-color: var(--sage); color: var(--moss); }
-    .btn-danger { background: var(--red-pale); color: var(--red); }
-    .btn-danger:hover { background: var(--red); color: white; }
-    .btn-github { background: #24292e; color: white; }
-    .btn-github:hover { background: #444; }
-    .btn-github:disabled { opacity: 0.5; cursor: not-allowed; }
-    .btn-secondary { background: var(--sage-pale); color: var(--moss); }
-    .btn-secondary:hover { background: var(--sage-light); }
-    .btn-sm { padding: 4px 12px; font-size: 0.7rem; border-radius: 14px; }
+    .admin-body{max-width:900px;margin:0 auto;padding:28px 20px 80px}
 
-    .action-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+    /* GitHub 连接 */
+    .github-card{border-radius:14px;padding:14px 18px;margin-bottom:20px}
+    .github-card.disconnected{border:1.5px solid var(--border);background:var(--white)}
+    .github-card.connected{border:1.5px solid var(--sage);background:var(--sage-pale)}
+    .gh-title{font-size:0.82rem;font-weight:500;margin-bottom:4px}
+    .gh-desc{font-size:0.72rem;color:var(--text-light);margin-bottom:12px;line-height:1.5}
+    .gh-row{display:flex;gap:8px}
+    .gh-row input{flex:1;padding:8px 12px;border-radius:8px;border:1px solid var(--border);font-size:0.8rem;font-family:'Noto Sans SC',sans-serif;background:var(--cream);outline:none}
+    .gh-row input:focus{border-color:var(--sage)}
+    .gh-hint{font-size:0.67rem;color:var(--text-light);margin-top:8px}
+    .gh-status{display:flex;align-items:center;justify-content:space-between;font-size:0.82rem;color:var(--moss)}
 
-    .push-status { display: none; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 10px; font-size: 0.78rem; margin-bottom: 16px; }
-    .push-status.pushing { display: flex; background: var(--blue-pale); color: var(--blue); }
-    .push-status.success { display: flex; background: var(--sage-pale); color: var(--moss); }
-    .push-status.error { display: flex; background: var(--red-pale); color: var(--red); }
-    .spinner { width: 14px; height: 14px; border: 2px solid currentColor; border-top-color: transparent; border-radius: 50%; animation: spin 0.7s linear infinite; flex-shrink: 0; }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    /* Section */
+    .section-title{font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-light);margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}
 
-    .event-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
-    .event-row { background: var(--white); border-radius: 12px; padding: 14px 16px; box-shadow: 0 1px 6px rgba(0,0,0,0.05); display: flex; gap: 12px; align-items: flex-start; }
-    .event-row-thumb { width: 64px; height: 64px; border-radius: 8px; overflow: hidden; flex-shrink: 0; background: var(--sage-pale); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
-    .event-row-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .event-row-info { flex: 1; min-width: 0; }
-    .event-row-title { font-size: 0.88rem; font-weight: 500; margin-bottom: 3px; }
-    .event-row-meta { font-size: 0.7rem; color: var(--text-light); margin-bottom: 6px; }
-    .event-row-actions { display: flex; gap: 6px; }
+    /* 活动列表 */
+    .event-list{display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+    .event-card{background:var(--white);border-radius:14px;box-shadow:0 1px 8px rgba(0,0,0,0.06);overflow:hidden}
+    .event-card-header{display:flex;gap:14px;align-items:center;padding:14px 16px;cursor:pointer}
+    .event-thumb{width:72px;height:72px;border-radius:10px;overflow:hidden;flex-shrink:0;background:var(--sage-pale);display:flex;align-items:center;justify-content:center;font-size:1.6rem}
+    .event-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .event-info{flex:1;min-width:0}
+    .event-title-row{display:flex;align-items:center;gap:8px;margin-bottom:3px}
+    .event-name{font-size:0.92rem;font-weight:500;color:var(--text)}
+    .type-badge{font-size:0.6rem;padding:2px 8px;border-radius:10px;background:var(--sage-pale);color:var(--moss)}
+    .event-meta{font-size:0.7rem;color:var(--text-light)}
+    .event-chevron{color:var(--text-light);font-size:0.9rem;transition:transform 0.25s;flex-shrink:0}
+    .event-card.open .event-chevron{transform:rotate(90deg)}
 
-    .json-section { margin-top: 8px; }
-    .json-editor { width: 100%; min-height: 280px; padding: 14px; border-radius: 10px; border: 1px solid var(--border); background: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', monospace; font-size: 0.75rem; line-height: 1.6; resize: vertical; outline: none; }
-    .json-editor:focus { border-color: var(--sage); }
+    /* 编辑面板 */
+    .event-edit{display:none;padding:0 16px 16px;border-top:1px solid var(--cream)}
+    .event-card.open .event-edit{display:block}
 
-    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(60px); background: var(--moss); color: white; padding: 10px 24px; border-radius: 24px; font-size: 0.8rem; box-shadow: 0 4px 16px rgba(0,0,0,0.2); transition: transform 0.3s ease; z-index: 999; white-space: nowrap; }
-    .toast.show { transform: translateX(-50%) translateY(0); }
+    .form-row{margin-bottom:12px}
+    .form-row label{display:block;font-size:0.7rem;color:var(--text-mid);margin-bottom:4px;letter-spacing:0.04em}
+    .form-row input,.form-row textarea{
+      width:100%;padding:8px 12px;border-radius:8px;border:1px solid var(--border);
+      background:var(--cream);font-size:0.82rem;font-family:'Noto Sans SC',sans-serif;
+      color:var(--text);outline:none;transition:border-color 0.2s;
+    }
+    .form-row input:focus,.form-row textarea:focus{border-color:var(--sage)}
+    .form-row textarea{resize:vertical;min-height:64px}
+    .form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 
-    @media (max-width: 480px) { .form-grid-2 { grid-template-columns: 1fr; } .media-caption { display: none; } }
+    /* 封面选择 */
+    .cover-label{font-size:0.7rem;color:var(--text-mid);margin-bottom:8px;display:block}
+    .cover-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:6px;max-height:220px;overflow-y:auto;padding:2px}
+    .cover-item{
+      aspect-ratio:1;border-radius:8px;overflow:hidden;cursor:pointer;
+      border:2.5px solid transparent;transition:border-color 0.2s;position:relative;
+      background:var(--sage-pale);
+    }
+    .cover-item img{width:100%;height:100%;object-fit:cover;display:block}
+    .cover-item.selected{border-color:var(--sage)}
+    .cover-item.selected::after{
+      content:'✓';position:absolute;bottom:3px;right:4px;
+      font-size:0.7rem;color:white;text-shadow:0 1px 2px rgba(0,0,0,0.6);
+    }
+    .cover-item-video{display:flex;align-items:center;justify-content:center;font-size:1.2rem;background:var(--warm,#f2ede2)}
+
+    /* 推送状态 */
+    .push-status{display:none;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;font-size:0.78rem;margin-bottom:16px}
+    .push-status.pushing{display:flex;background:#e8f2f9;color:#4a7fa5}
+    .push-status.success{display:flex;background:var(--sage-pale);color:var(--moss)}
+    .push-status.error{display:flex;background:var(--red-pale);color:var(--red)}
+    .spinner{width:14px;height:14px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:spin 0.7s linear infinite;flex-shrink:0}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* 按钮 */
+    .btn{padding:8px 18px;border-radius:20px;border:none;font-size:0.78rem;font-family:'Noto Sans SC',sans-serif;cursor:pointer;transition:all 0.2s}
+    .btn-primary{background:var(--sage);color:white}
+    .btn-primary:hover{background:var(--moss)}
+    .btn-primary:disabled{opacity:0.5;cursor:not-allowed}
+    .btn-github{background:#24292e;color:white}
+    .btn-github:hover{background:#444}
+    .btn-github:disabled{opacity:0.5;cursor:not-allowed}
+    .btn-outline{background:transparent;border:1px solid var(--sage-light);color:var(--text-mid)}
+    .btn-outline:hover{border-color:var(--sage);color:var(--moss)}
+    .btn-sm{padding:5px 14px;font-size:0.72rem;border-radius:14px}
+    .btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+
+    /* 操作栏 */
+    .action-bar{
+      position:fixed;bottom:0;left:0;right:0;
+      background:rgba(249,246,239,0.95);backdrop-filter:blur(8px);
+      border-top:1px solid var(--border);
+      padding:12px 24px;display:flex;gap:10px;align-items:center;
+      max-width:900px;margin:0 auto;
+    }
+    /* fix: action-bar not centered */
+    .action-bar-wrap{position:fixed;bottom:0;left:0;right:0;background:rgba(249,246,239,0.95);backdrop-filter:blur(8px);border-top:1px solid var(--border);z-index:40}
+    .action-bar-inner{max-width:900px;margin:0 auto;padding:12px 20px;display:flex;gap:10px;align-items:center}
+
+    .toast{position:fixed;bottom:72px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--moss);color:white;padding:10px 24px;border-radius:24px;font-size:0.8rem;box-shadow:0 4px 16px rgba(0,0,0,0.2);transition:all 0.3s;z-index:999;opacity:0;white-space:nowrap}
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+    @media(max-width:480px){.form-grid-2{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
 
-<header class="admin-header">
-  <div class="admin-logo">Happy Time <small>管理后台</small></div>
-  <a href="index.html" class="btn-view">← 查看网站</a>
-</header>
-
-<div class="admin-body">
-
-  <!-- GitHub 连接状态 -->
-  <div id="ghDisconnected" class="github-card disconnected">
-    <div class="gh-title">🔗 连接 GitHub · 启用一键推送</div>
-    <div class="gh-desc">配置 Token 后，每次修改点「🚀 推送到 GitHub」即可自动更新网站，无需手动上传文件</div>
-    <div class="gh-row">
-      <input type="password" id="ghTokenInput" placeholder="粘贴 GitHub Personal Access Token…" autocomplete="off">
-      <button class="btn btn-primary" onclick="saveToken()">连接</button>
-    </div>
-    <div class="gh-hint">🔒 Token 仅保存在你的浏览器本地，不会上传到任何服务器</div>
+<!-- 登录页 -->
+<div class="login-wrap" id="loginWrap">
+  <div class="login-card">
+    <div class="login-logo">Happy Time</div>
+    <div class="login-sub">管理后台 · 请输入密码</div>
+    <input type="password" id="pwdInput" placeholder="••••••••••" autocomplete="off"
+      onkeydown="if(event.key==='Enter')doLogin()">
+    <div class="login-err" id="loginErr"></div>
+    <button class="btn btn-primary" style="width:100%;padding:10px" onclick="doLogin()">进入后台</button>
   </div>
+</div>
 
-  <div id="ghConnected" class="github-card connected" style="display:none">
-    <div class="gh-status">
-      <span>✅ 已连接 GitHub · GitComeOn/sunshine-memories</span>
-      <button class="btn btn-outline btn-sm" onclick="clearToken()">断开</button>
+<!-- 主界面 -->
+<div id="mainWrap" style="display:none">
+  <header class="admin-header">
+    <div class="admin-logo">Happy Time <small>管理后台</small></div>
+    <div class="header-right">
+      <a href="index.html" class="btn-view">← 查看网站</a>
+      <button class="btn-logout" onclick="doLogout()">退出</button>
     </div>
-  </div>
+  </header>
 
-  <!-- 新增活动 -->
-  <div class="section-title" style="margin-top:4px"><span>➕ 新增活动</span></div>
-  <div class="form-card">
-    <div class="form-grid-2">
-      <div class="form-row">
-        <label>活动名称 *</label>
-        <input type="text" id="fTitle" placeholder="例：五一广州聚餐">
+  <div class="admin-body">
+
+    <!-- GitHub 连接 -->
+    <div id="ghDisconnected" class="github-card disconnected">
+      <div class="gh-title">🔗 连接 GitHub · 启用一键推送</div>
+      <div class="gh-desc">配置后修改活动信息可自动同步到网站</div>
+      <div class="gh-row">
+        <input type="password" id="ghTokenInput" placeholder="粘贴 GitHub Personal Access Token…" autocomplete="off">
+        <button class="btn btn-primary" onclick="saveToken()">连接</button>
       </div>
-      <div class="form-row">
-        <label>日期 *</label>
-        <input type="date" id="fDate">
-      </div>
+      <div class="gh-hint">🔒 Token 仅保存在浏览器本地，不会上传到任何服务器</div>
     </div>
-    <div class="form-grid-2">
-      <div class="form-row">
-        <label>类型</label>
-        <select id="fType">
-          <option value="出游">🌿 出游</option>
-          <option value="聚餐">🍜 聚餐</option>
-          <option value="日常">☀️ 日常</option>
-        </select>
-      </div>
-      <div class="form-row">
-        <label>地点</label>
-        <input type="text" id="fLocation" placeholder="例：广州天河">
+    <div id="ghConnected" class="github-card connected" style="display:none">
+      <div class="gh-status">
+        <span>✅ 已连接 GitHub · GitComeOn/sunshine-memories</span>
+        <button class="btn btn-outline btn-sm" onclick="clearToken()">断开</button>
       </div>
     </div>
-    <div class="form-row">
-      <label>简介（选填）</label>
-      <textarea id="fDesc" placeholder="一两句话描述这次活动…"></textarea>
+
+    <!-- 推送状态 -->
+    <div class="push-status" id="pushStatus">
+      <div class="spinner" id="pushSpinner" style="display:none"></div>
+      <span id="pushMsg"></span>
     </div>
-    <div class="form-row">
-      <label>照片/视频链接</label>
-      <div class="media-list" id="mediaList"></div>
-      <button class="btn btn-outline btn-sm" style="margin-top:8px" onclick="addMediaRow()">＋ 添加媒体</button>
+
+    <!-- 活动列表 -->
+    <div class="section-title">
+      <span>📁 所有活动</span>
+      <span id="eventCount" style="font-size:0.75rem;color:var(--text-mid)"></span>
     </div>
-    <div class="btn-row" style="margin-top:16px">
-      <button class="btn btn-primary" onclick="addEvent()">✓ 添加到列表</button>
-      <button class="btn btn-outline" onclick="resetForm()">清空</button>
-    </div>
+    <div class="event-list" id="eventList"></div>
+
   </div>
 
-  <!-- 推送状态 -->
-  <div class="push-status" id="pushStatus">
-    <div class="spinner" id="pushSpinner" style="display:none"></div>
-    <span id="pushMsg"></span>
-  </div>
-
-  <!-- 操作按钮 -->
-  <div class="action-bar">
-    <button class="btn btn-github" id="btnPush" onclick="pushToGitHub()">🚀 推送到 GitHub（网站自动更新）</button>
-    <button class="btn btn-outline" onclick="saveJson()">💾 仅下载 data.json</button>
-  </div>
-
-  <!-- 活动列表 -->
-  <div class="section-title">
-    <span>📁 所有活动</span>
-    <span id="eventCount" style="font-size:0.75rem;color:var(--text-mid)"></span>
-  </div>
-  <div class="event-list" id="eventList"></div>
-
-  <!-- JSON 高级编辑 -->
-  <div class="json-section">
-    <div class="section-title"><span>⚙️ 高级：直接编辑 JSON</span></div>
-    <textarea class="json-editor" id="jsonEditor" spellcheck="false"></textarea>
-    <div class="btn-row" style="margin-top:12px">
-      <button class="btn btn-secondary" onclick="applyJson()">✓ 应用修改</button>
-      <button class="btn btn-github" id="btnPush2" onclick="pushToGitHub()">🚀 推送到 GitHub</button>
+  <!-- 底部操作栏 -->
+  <div class="action-bar-wrap">
+    <div class="action-bar-inner">
+      <button class="btn btn-github" id="btnPush" onclick="pushToGitHub()" disabled>🚀 推送到 GitHub（网站自动更新）</button>
       <button class="btn btn-outline" onclick="saveJson()">💾 下载 data.json</button>
     </div>
   </div>
-
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-const GH_OWNER  = 'GitComeOn';
-const GH_REPO   = 'sunshine-memories';
-const GH_FILE   = 'data.json';
-const GH_BRANCH = 'main';
+// ── 密码 ──
+const ADMIN_PWD = 'YJ87654321';
+const SESSION_KEY = 'ht_admin_authed';
 
-let events = [];
+function doLogin() {
+  const v = document.getElementById('pwdInput').value;
+  if (v === ADMIN_PWD) {
+    sessionStorage.setItem(SESSION_KEY, '1');
+    document.getElementById('loginWrap').style.display = 'none';
+    document.getElementById('mainWrap').style.display = 'block';
+    loadData();
+    updateGhUI();
+  } else {
+    document.getElementById('loginErr').textContent = '密码错误，请重试';
+    document.getElementById('pwdInput').value = '';
+    document.getElementById('pwdInput').focus();
+  }
+}
 
-// ── Token ──
+function doLogout() {
+  sessionStorage.removeItem(SESSION_KEY);
+  location.reload();
+}
+
+// 检查是否已登录
+if (sessionStorage.getItem(SESSION_KEY) === '1') {
+  document.getElementById('loginWrap').style.display = 'none';
+  document.getElementById('mainWrap').style.display = 'block';
+}
+
+// ── GitHub ──
+const GH_OWNER = 'GitComeOn', GH_REPO = 'sunshine-memories', GH_FILE = 'data.json', GH_BRANCH = 'main';
 function getToken() { return localStorage.getItem('ht_gh_token') || ''; }
-
 function saveToken() {
   const t = document.getElementById('ghTokenInput').value.trim();
   if (!t) { showToast('请输入 Token'); return; }
   localStorage.setItem('ht_gh_token', t);
-  updateGhUI();
-  showToast('✅ GitHub 已连接');
+  updateGhUI(); showToast('✅ GitHub 已连接');
 }
-
 function clearToken() {
-  if (!confirm('确认断开 GitHub 连接？')) return;
-  localStorage.removeItem('ht_gh_token');
-  updateGhUI();
+  if (!confirm('确认断开？')) return;
+  localStorage.removeItem('ht_gh_token'); updateGhUI();
 }
-
 function updateGhUI() {
   const has = !!getToken();
   document.getElementById('ghDisconnected').style.display = has ? 'none' : 'block';
-  document.getElementById('ghConnected').style.display   = has ? 'block' : 'none';
-  document.getElementById('btnPush').disabled  = !has;
-  document.getElementById('btnPush2').disabled = !has;
+  document.getElementById('ghConnected').style.display = has ? 'block' : 'none';
+  document.getElementById('btnPush').disabled = !has;
 }
 
-// ── 加载 ──
+// ── 数据 ──
+let events = [];
+
 async function loadData() {
   try {
     const res = await fetch('data.json?t=' + Date.now());
     const data = await res.json();
     events = data.events || [];
   } catch(e) { events = []; }
-  render();
-  updateGhUI();
-}
-
-function render() {
   renderList();
-  renderJson();
-  document.getElementById('eventCount').textContent = `共 ${events.length} 个活动`;
 }
 
 function renderList() {
   const c = document.getElementById('eventList');
+  document.getElementById('eventCount').textContent = `共 ${events.length} 个活动`;
+  const typeMap = { '出游':'🌿', '聚餐':'🍜', '日常':'☀️' };
+
   if (!events.length) {
-    c.innerHTML = '<div style="text-align:center;padding:32px;color:var(--text-light);font-size:0.82rem;">暂无活动，从上方表单添加第一个吧 🌿</div>';
+    c.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-light);font-size:0.85rem">暂无活动数据</div>';
     return;
   }
-  const typeMap = { '出游':'🌿', '聚餐':'🍜', '日常':'☀️' };
-  c.innerHTML = [...events].sort((a,b)=>new Date(b.date)-new Date(a.date)).map(ev => {
-    const media = ev.media||[];
-    const thumb = media[0]?.thumb || media[0]?.url || '';
-    return `<div class="event-row">
-      <div class="event-row-thumb">${thumb?`<img src="${thumb}" alt="">`:(typeMap[ev.type]||'📸')}</div>
-      <div class="event-row-info">
-        <div class="event-row-title">${typeMap[ev.type]||''} ${ev.title}</div>
-        <div class="event-row-meta">${ev.date} · ${ev.location||''} · ${media.length} 个素材</div>
-        <div class="event-row-actions">
-          <button class="btn btn-secondary btn-sm" onclick="editEvent('${ev.id}')">编辑</button>
-          <button class="btn btn-danger btn-sm" onclick="deleteEvent('${ev.id}')">删除</button>
+
+  c.innerHTML = [...events]
+    .sort((a,b) => new Date(b.date) - new Date(a.date))
+    .map(ev => {
+      const media = ev.media || [];
+      const photos = media.filter(m => m.type === 'photo');
+      const thumb = ev.cover || (photos[0]?.url) || (media[0]?.url) || '';
+      const cats = [...new Set(media.map(m => m.category).filter(Boolean))];
+      const catStr = cats.length ? cats.join('·') : '未分类';
+
+      return `<div class="event-card" id="card_${ev.id}">
+        <div class="event-card-header" onclick="toggleCard('${ev.id}')">
+          <div class="event-thumb">
+            ${thumb ? `<img src="${thumb}" alt="">` : (typeMap[ev.type]||'📸')}
+          </div>
+          <div class="event-info">
+            <div class="event-title-row">
+              <span class="event-name">${ev.title}</span>
+              <span class="type-badge">${typeMap[ev.type]||''}${ev.type}</span>
+            </div>
+            <div class="event-meta">${ev.date} · ${ev.location||''}</div>
+            <div class="event-meta" style="margin-top:2px">📸${photos.length} 🎬${media.length-photos.length} · ${catStr}</div>
+          </div>
+          <span class="event-chevron">›</span>
         </div>
-      </div>
-    </div>`;
-  }).join('');
+        <div class="event-edit" id="edit_${ev.id}">
+          <div style="height:14px"></div>
+          <div class="form-grid-2">
+            <div class="form-row">
+              <label>活动名称</label>
+              <input type="text" id="f_title_${ev.id}" value="${escHtml(ev.title)}">
+            </div>
+            <div class="form-row">
+              <label>地点</label>
+              <input type="text" id="f_location_${ev.id}" value="${escHtml(ev.location||'')}">
+            </div>
+          </div>
+          <div class="form-row">
+            <label>简介</label>
+            <textarea id="f_desc_${ev.id}" placeholder="一两句话描述这次活动…">${escHtml(ev.desc||'')}</textarea>
+          </div>
+          ${photos.length > 0 ? `
+          <div class="form-row">
+            <label class="cover-label">封面图（点击选择，当前：${ev.cover ? '已指定' : '默认第一张'}）</label>
+            <div class="cover-grid" id="covers_${ev.id}">
+              ${photos.map((m,i) => `
+                <div class="cover-item${ev.cover===m.url?' selected':''}"
+                  id="ci_${ev.id}_${i}"
+                  onclick="selectCover('${ev.id}','${m.url}',${i})">
+                  <img src="${m.url}" alt="" loading="lazy">
+                </div>
+              `).join('')}
+            </div>
+          </div>` : ''}
+          <div class="btn-row">
+            <button class="btn btn-primary btn-sm" onclick="saveEvent('${ev.id}')">✓ 保存修改</button>
+            <button class="btn btn-outline btn-sm" onclick="toggleCard('${ev.id}')">取消</button>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
 }
 
-function renderJson() {
-  document.getElementById('jsonEditor').value = JSON.stringify({ events }, null, 2);
+function toggleCard(id) {
+  const card = document.getElementById('card_' + id);
+  card.classList.toggle('open');
 }
 
-// ── 媒体行 ──
-function addMediaRow(url='', caption='', type='photo') {
-  const d = document.createElement('div');
-  d.className = 'media-item';
-  d.innerHTML = `
-    <select><option value="photo"${type==='photo'?' selected':''}>图片</option><option value="video"${type==='video'?' selected':''}>视频</option></select>
-    <input type="text" placeholder="粘贴 COS 对象链接…" value="${url}">
-    <input type="text" class="media-caption" placeholder="描述（选填）" value="${caption}">
-    <button class="btn-del-media" onclick="this.parentElement.remove()">×</button>`;
-  document.getElementById('mediaList').appendChild(d);
+function escHtml(str) {
+  return (str||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
-// ── 添加活动 ──
-function addEvent() {
-  const title = document.getElementById('fTitle').value.trim();
-  const date  = document.getElementById('fDate').value;
-  if (!title||!date) { showToast('请填写活动名称和日期'); return; }
-  const media = [];
-  document.querySelectorAll('#mediaList .media-item').forEach(row => {
-    const type = row.querySelector('select').value;
-    const url  = row.querySelectorAll('input')[0].value.trim();
-    const cap  = row.querySelectorAll('input')[1].value.trim();
-    if (url) media.push({ type, url, thumb: url, caption: cap });
-  });
-  events.unshift({ id:'event_'+Date.now(), title, date, type:document.getElementById('fType').value, location:document.getElementById('fLocation').value.trim(), desc:document.getElementById('fDesc').value.trim(), media });
-  render();
-  resetForm();
-  showToast('✓ 已添加，点「推送到 GitHub」更新网站');
+function selectCover(evId, url, idx) {
+  // 更新内存
+  const ev = events.find(e => e.id === evId);
+  if (!ev) return;
+  ev.cover = (ev.cover === url) ? '' : url; // 再次点击取消选择
+
+  // 更新 UI
+  document.querySelectorAll(`#covers_${evId} .cover-item`).forEach(el => el.classList.remove('selected'));
+  if (ev.cover) {
+    document.getElementById(`ci_${evId}_${idx}`).classList.add('selected');
+  }
 }
 
-function resetForm() {
-  ['fTitle','fDate','fLocation','fDesc'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('fType').value='出游';
-  document.getElementById('mediaList').innerHTML='';
-  addMediaRow();
+function saveEvent(id) {
+  const ev = events.find(e => e.id === id);
+  if (!ev) return;
+  ev.title    = document.getElementById(`f_title_${id}`).value.trim() || ev.title;
+  ev.location = document.getElementById(`f_location_${id}`).value.trim();
+  ev.desc     = document.getElementById(`f_desc_${id}`).value.trim();
+  // cover 已在 selectCover 里更新
+  renderList();
+  showToast('✓ 已保存，点「推送到 GitHub」更新网站');
 }
 
-function deleteEvent(id) {
-  if (!confirm('确认删除？')) return;
-  events = events.filter(e=>e.id!==id);
-  render();
-  showToast('已删除，记得推送到 GitHub');
-}
-
-function editEvent(id) {
-  document.querySelector('.json-section').scrollIntoView({behavior:'smooth'});
-  showToast('在 JSON 编辑器中修改后推送');
-}
-
-function applyJson() {
-  try { const d=JSON.parse(document.getElementById('jsonEditor').value); events=d.events||[]; renderList(); document.getElementById('eventCount').textContent=`共 ${events.length} 个活动`; showToast('✓ 已应用'); }
-  catch(e) { showToast('JSON 格式错误'); }
-}
-
-function saveJson() {
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([JSON.stringify({events},null,2)],{type:'application/json'}));
-  a.download = 'data.json'; a.click();
-  showToast('✓ data.json 已下载');
-}
-
-// ── GitHub 推送 ──
+// ── 推送 ──
 async function pushToGitHub() {
   const token = getToken();
   if (!token) { showToast('请先连接 GitHub Token'); return; }
-
-  // 同步编辑器内容
-  try { const d=JSON.parse(document.getElementById('jsonEditor').value); events=d.events||[]; } catch(e) {}
-
-  const encoded = btoa(unescape(encodeURIComponent(JSON.stringify({events},null,2))));
-  setPushStatus('pushing','正在推送到 GitHub…');
-  [document.getElementById('btnPush'), document.getElementById('btnPush2')].forEach(b=>b.disabled=true);
+  setPushStatus('pushing', '正在推送到 GitHub…');
+  document.getElementById('btnPush').disabled = true;
 
   try {
-    // 获取文件 SHA
-    const getRes = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}?ref=${GH_BRANCH}`,
-      { headers: { Authorization:`token ${token}`, Accept:'application/vnd.github.v3+json' } });
+    const getRes = await fetch(
+      `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}?ref=${GH_BRANCH}`,
+      { headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' } }
+    );
     const sha = getRes.ok ? (await getRes.json()).sha : '';
 
-    // 推送
-    const putRes = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}`, {
-      method: 'PUT',
-      headers: { Authorization:`token ${token}`, Accept:'application/vnd.github.v3+json', 'Content-Type':'application/json' },
-      body: JSON.stringify({ message:`更新活动数据 ${new Date().toLocaleString('zh-CN')}`, content: encoded, sha: sha||undefined, branch: GH_BRANCH })
-    });
+    const content = JSON.stringify({ events }, null, 2);
+    const encoded = btoa(unescape(encodeURIComponent(content)));
 
+    const putRes = await fetch(
+      `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}`,
+      {
+        method: 'PUT',
+        headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: `更新活动数据 ${new Date().toLocaleString('zh-CN')}`, content: encoded, sha: sha||undefined, branch: GH_BRANCH })
+      }
+    );
     if (putRes.ok) {
-      setPushStatus('success','✅ 推送成功！Vercel 正在部署，约1分钟后网站生效');
+      setPushStatus('success', '✅ 推送成功！约1分钟后网站更新');
       showToast('🚀 推送成功！');
     } else {
       const err = await putRes.json();
       throw new Error(err.message||'推送失败');
     }
   } catch(e) {
-    setPushStatus('error',`❌ 失败：${e.message}`);
-    showToast('推送失败，请检查 Token');
+    setPushStatus('error', `❌ ${e.message}`);
+    showToast('推送失败');
   } finally {
     updateGhUI();
   }
@@ -381,14 +433,24 @@ function setPushStatus(type, msg) {
   document.getElementById('pushSpinner').style.display = type==='pushing'?'block':'none';
 }
 
+function saveJson() {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([JSON.stringify({events},null,2)],{type:'application/json'}));
+  a.download = 'data.json'; a.click();
+  showToast('✓ data.json 已下载');
+}
+
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg; t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 3500);
+  setTimeout(() => t.classList.remove('show'), 3500);
 }
 
-addMediaRow();
-loadData();
+// 初始化
+if (sessionStorage.getItem(SESSION_KEY) === '1') {
+  loadData();
+  updateGhUI();
+}
 </script>
 </body>
 </html>

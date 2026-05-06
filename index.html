@@ -633,6 +633,40 @@
     .lb-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     /* ═══════════════════════════════
+       CATEGORY TABS
+    ═══════════════════════════════ */
+    .cat-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin: 10px 0 4px;
+    }
+
+    .cat-tab {
+      padding: 4px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--sage-light);
+      background: transparent;
+      font-size: 0.68rem;
+      font-family: 'Noto Sans SC', sans-serif;
+      color: var(--text-mid);
+      cursor: pointer;
+      transition: all 0.18s;
+      letter-spacing: 0.03em;
+    }
+
+    .cat-tab.active {
+      background: var(--sage);
+      border-color: var(--sage);
+      color: white;
+    }
+
+    .cat-tab:hover:not(.active) {
+      border-color: var(--sage);
+      color: var(--moss);
+    }
+
+    /* ═══════════════════════════════
        EMPTY STATE
     ═══════════════════════════════ */
     .empty-state {
@@ -875,6 +909,17 @@ function renderTimeline(events) {
     }).join('');
 
     const typeMap = { '出游': '🌿 出游', '聚餐': '🍜 聚餐', '日常': '☀️ 日常' };
+    const catIconMap = { '足迹':'🗺️','风景':'🏔️','人物':'👥','花絮':'🎬','美食':'🍜','合影':'📸' };
+
+    // 获取该活动的子分类列表
+    const cats = [...new Set(media.map(m => m.category).filter(Boolean))];
+    const hasCats = cats.length > 0;
+
+    const catTabsHTML = hasCats ? `
+      <div class="cat-tabs" id="cattabs_${ev.id}">
+        <button class="cat-tab active" onclick="filterCat('${ev.id}','',this)">全部</button>
+        ${cats.map(c => `<button class="cat-tab" onclick="filterCat('${ev.id}','${c}',this)">${catIconMap[c]||''}${c}</button>`).join('')}
+      </div>` : '';
 
     return `<div class="timeline-item">
       <div class="timeline-spine">
@@ -882,7 +927,7 @@ function renderTimeline(events) {
         <div class="spine-line"></div>
       </div>
       <div class="timeline-card">
-        <div class="card-cover">
+        <div class="card-cover" id="cover_${ev.id}">
           <div class="card-cover-grid ${countClass}">${coverHTML}</div>
         </div>
         <div class="card-meta">
@@ -892,6 +937,7 @@ function renderTimeline(events) {
           </div>
           <div class="card-title">${ev.title}</div>
           ${ev.desc ? `<div class="card-desc">${ev.desc}</div>` : ''}
+          ${catTabsHTML}
           <div class="card-footer">
             <div class="card-location">
               <svg width="11" height="13" viewBox="0 0 11 13" fill="none">
@@ -929,6 +975,53 @@ function renderGrid(events) {
       </div>
     </div>`;
   }).join('');
+}
+
+// ── 分类筛选 ──
+function filterCat(evId, cat, btn) {
+  // 更新 tab 状态
+  document.querySelectorAll(`#cattabs_${evId} .cat-tab`).forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const ev = allEvents.find(e => e.id === evId);
+  if (!ev) return;
+
+  const media = ev.media || [];
+  const filtered = cat ? media.filter(m => m.category === cat) : media;
+
+  // 重绘封面格子
+  const coverDiv = document.getElementById('cover_' + evId);
+  const count = Math.min(filtered.length, 4);
+  const extra = filtered.length > 4 ? filtered.length - 4 : 0;
+  const countClass = count === 1 ? 'count-1' : count === 2 ? 'count-2' : count === 3 ? 'count-3' : 'count-4plus';
+  const coverMedia = filtered.slice(0, 4);
+
+  const coverHTML = coverMedia.map((m, mi) => {
+    const isLast = mi === 3 && extra > 0;
+    const thumb = m.thumb || m.url;
+    const globalIdx = media.indexOf(m);
+    return `<div class="cover-img${m.type==='video'?' has-video':''}">
+      <img src="${thumb}" alt="${m.caption||''}" loading="lazy" onclick="openLightboxFiltered('${evId}','${cat}',${globalIdx})">
+      ${isLast ? `<div class="cover-more">+${extra}</div>` : ''}
+    </div>`;
+  }).join('');
+
+  coverDiv.innerHTML = `<div class="card-cover-grid ${countClass}">${coverHTML}</div>`;
+}
+
+function openLightboxFiltered(eventId, cat, startGlobalIdx) {
+  const ev = allEvents.find(e => e.id === eventId);
+  if (!ev) return;
+  const media = ev.media || [];
+  lbItems = cat ? media.filter(m => m.category === cat) : media;
+  // 在过滤后的列表里找起始位置
+  const startItem = media[startGlobalIdx];
+  lbIndex = startItem ? Math.max(0, lbItems.indexOf(startItem)) : 0;
+  document.getElementById('lbTitle').textContent = ev.title + (cat ? ` · ${cat}` : '');
+  buildThumbs();
+  showLbItem(lbIndex);
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
 
 // ── Lightbox ──

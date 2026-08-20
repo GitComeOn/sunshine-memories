@@ -523,6 +523,23 @@
 
     .lb-close:hover { background: rgba(255,255,255,0.3); }
 
+    .lb-actions { display: flex; align-items: center; gap: 8px; }
+
+    .lb-download {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: white;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+
+    .lb-download:hover { background: rgba(255,255,255,0.3); }
+
     .lb-main {
       display: flex;
       align-items: center;
@@ -723,7 +740,7 @@
 <section class="hero">
   <div class="hero-eyebrow">Our Memories</div>
   <h1 class="hero-title">Happy Time</h1>
-  <p class="hero-subtitle">记录每一次相聚，珍藏每一个瞬间</p>
+  <p class="hero-subtitle">记录每一次相聚，珍藏每一个瞬间 · <span id="groupLabel"></span></p>
   <div class="hero-stats" id="heroStats">
     <div class="stat-item">
       <div class="stat-num" id="statEvents">0</div>
@@ -761,7 +778,10 @@
 <div class="lightbox" id="lightbox">
   <div class="lb-header">
     <div class="lb-title" id="lbTitle"></div>
-    <button class="lb-close" onclick="closeLightbox()">✕</button>
+    <div class="lb-actions">
+      <a class="lb-download" id="lbDownload" href="#" download title="下载原图">⤓</a>
+      <button class="lb-close" onclick="closeLightbox()">✕</button>
+    </div>
   </div>
   <div class="lb-main">
     <button class="lb-arrow lb-prev" id="lbPrev" onclick="lbNavigate(-1)">‹</button>
@@ -787,15 +807,76 @@ let currentView = 'timeline';
 let lbItems = [];
 let lbIndex = 0;
 
+// ── 图片尺寸（按显示位置取合适的分辨率）──
+// 数据万象未开通时（ci=false）一律回落到原图，画质不变、只是不省流量。
+let CI_ON = false;
+
+const W_FILM  = 200;    // 灯箱底部 44px 小图（含 3 倍屏）
+const W_COVER = 1200;   // 卡片封面 / 相册格子
+const W_LIGHT = 1600;   // 灯箱主图，缩放时会换成原图
+
+function sized(m, w) {
+  if (!CI_ON) return m.thumb || m.url;
+  if (m.type === 'video') return `${m.url}?ci-process=snapshot&time=1&format=jpg&width=${w}`;
+  return `${m.url}?imageMogr2/thumbnail/${w}x/format/webp/quality/82`;
+}
+
+// 灯箱主图：默认用 1600 宽（够满屏清晰且省流量），放大时再换原图
+function lbDisplaySrc(m) {
+  if (!CI_ON) return m.url;
+  if (/\.hei[cf]$/i.test(m.url)) return sized(m, 2400);  // HEIC 浏览器不认，必须转码
+  return sized(m, W_LIGHT);
+}
+
+// ── 圈子（?g=tx 同学 / ?g=qp 亲朋 / ?g=all 全部）──
+const GROUP_NAMES = { tx: '同学', qp: '亲朋', all: '全部' };
+const DEFAULT_GROUP = 'tx';   // 没带参数时的默认圈子
+
+// 活动类型徽章。没列到的类型直接显示原文。
+const TYPE_MAP = { '出游':'🌿 出游', '聚餐':'🍜 聚餐', '聚会':'🥂 聚会', '日常':'☀️ 日常' };
+
+// 标签图标。子文件夹可以任意命名，查不到的用默认图标。
+const CAT_ICON = {
+  '足迹':'🗺️','风景':'🏔️','人物':'👥','花絮':'🎬','美食':'🍜','合影':'📸',
+  '寺院':'🛕','草原':'🌾','星空':'✨','视频':'🎬','路上':'🚗','日出':'🌅',
+};
+function catIcon(c) { return CAT_ICON[c] || '📁'; }
+
+function currentGroup() {
+  const g = new URLSearchParams(location.search).get('g');
+  return (g && /^[a-z0-9_-]{1,16}$/i.test(g)) ? g : DEFAULT_GROUP;
+}
+
+// media 项的标签：新数据用 tags 数组，旧数据回退到 category
+function tagsOf(m) {
+  if (Array.isArray(m.tags) && m.tags.length) return m.tags;
+  return m.category ? [m.category] : [];
+}
+function hasTag(m, t) {
+  return !t || tagsOf(m).includes(t);
+}
+
 async function loadData() {
+  const g = currentGroup();
   try {
-    const res = await fetch('data.json?t=' + Date.now());
+    const res = await fetch(`d-${g}.json?t=` + Date.now());
+    if (!res.ok) throw new Error('no group file');
     const data = await res.json();
     allEvents = data.events || [];
+    CI_ON = !!data.ci;
   } catch(e) {
-    // 如果 data.json 不存在，使用内嵌示例数据
-    allEvents = FALLBACK_DATA.events;
+    // 分圈子文件不存在时回退到全量 data.json（首次部署 / 云函数还没跑）
+    try {
+      const res2 = await fetch('data.json?t=' + Date.now());
+      const data2 = await res2.json();
+      allEvents = data2.events || [];
+      CI_ON = !!data2.ci;
+    } catch(e2) {
+      allEvents = FALLBACK_DATA.events;
+    }
   }
+  const label = document.getElementById('groupLabel');
+  if (label) label.textContent = GROUP_NAMES[g] || g;
   init();
 }
 
@@ -834,11 +915,10 @@ function buildFilters() {
   const types = new Set();
   allEvents.forEach(ev => { if (ev.type) types.add(ev.type); });
   const chips = document.getElementById('filterChips');
-  const typeMap = { '出游': '🌿 出游', '聚餐': '🍜 聚餐', '日常': '☀️ 日常' };
   types.forEach(t => {
     const btn = document.createElement('button');
     btn.className = 'chip';
-    btn.textContent = typeMap[t] || t;
+    btn.textContent = TYPE_MAP[t] || t;
     btn.onclick = () => filterBy(t, btn);
     chips.appendChild(btn);
   });
@@ -905,7 +985,7 @@ function renderTimeline(events) {
 
     const coverHTML = coverMedia.map((m, mi) => {
       const isLast = mi === 3 && extra > 0;
-      const thumb = m.thumb || m.url;
+      const thumb = sized(m, W_COVER);
       const globalIdx = media.indexOf(m);
       return `<div class="cover-img${m.type==='video'?' has-video':''}">
         <img src="${thumb}" alt="${m.caption||''}" loading="lazy" onclick="openLightbox('${ev.id}', ${globalIdx})">
@@ -913,17 +993,14 @@ function renderTimeline(events) {
       </div>`;
     }).join('');
 
-    const typeMap = { '出游': '🌿 出游', '聚餐': '🍜 聚餐', '日常': '☀️ 日常' };
-    const catIconMap = { '足迹':'🗺️','风景':'🏔️','人物':'👥','花絮':'🎬','美食':'🍜','合影':'📸' };
-
-    // 获取该活动的子分类列表
-    const cats = [...new Set(media.map(m => m.category).filter(Boolean))];
+    // 获取该活动的标签列表（一张照片可属于多个标签）
+    const cats = [...new Set(media.flatMap(m => tagsOf(m)))];
     const hasCats = cats.length > 0;
 
     const catTabsHTML = hasCats ? `
       <div class="cat-tabs" id="cattabs_${ev.id}">
         <button class="cat-tab active" onclick="filterCat('${ev.id}','',this)">全部</button>
-        ${cats.map(c => `<button class="cat-tab" onclick="filterCat('${ev.id}','${c}',this)">${catIconMap[c]||''}${c}</button>`).join('')}
+        ${cats.map(c => `<button class="cat-tab" onclick="filterCat('${ev.id}','${c}',this)">${catIcon(c)} ${c}</button>`).join('')}
       </div>` : '';
 
     return `<div class="timeline-item">
@@ -938,7 +1015,7 @@ function renderTimeline(events) {
         <div class="card-meta">
           <div class="card-date-row">
             <span class="card-date">${formatDate(ev.date)}</span>
-            ${ev.type ? `<span class="card-type-badge">${typeMap[ev.type]||ev.type}</span>` : ''}
+            ${ev.type ? `<span class="card-type-badge">${TYPE_MAP[ev.type]||ev.type}</span>` : ''}
           </div>
           <div class="card-title">${ev.title}</div>
           ${ev.desc ? `<div class="card-desc">${ev.desc}</div>` : ''}
@@ -967,8 +1044,9 @@ function renderGrid(events) {
 
   container.innerHTML = sorted.map((ev, i) => {
     const media = ev.media || [];
-    const first = media[0];
-    const thumb = first ? (first.thumb || first.url) : '';
+    const photoFirst = media.filter(m => m.type === 'photo');
+    const first = (ev.cover && media.find(m => m.url === ev.cover)) || photoFirst[0] || media[0];
+    const thumb = first ? sized(first, W_COVER) : '';
     return `<div class="grid-card" style="animation-delay:${i*0.05}s" onclick="openLightbox('${ev.id}', 0)">
       <div class="grid-cover">
         ${thumb ? `<img src="${thumb}" alt="${ev.title}" loading="lazy">` : '<div style="width:100%;height:100%;background:var(--sage-pale)"></div>'}
@@ -992,7 +1070,7 @@ function filterCat(evId, cat, btn) {
   if (!ev) return;
 
   const media = ev.media || [];
-  const filtered = cat ? media.filter(m => m.category === cat) : media;
+  const filtered = cat ? media.filter(m => hasTag(m, cat)) : media;
 
   // 重绘封面格子
   const coverDiv = document.getElementById('cover_' + evId);
@@ -1003,7 +1081,7 @@ function filterCat(evId, cat, btn) {
 
   const coverHTML = coverMedia.map((m, mi) => {
     const isLast = mi === 3 && extra > 0;
-    const thumb = m.thumb || m.url;
+    const thumb = sized(m, W_COVER);
     const globalIdx = media.indexOf(m);
     return `<div class="cover-img${m.type==='video'?' has-video':''}">
       <img src="${thumb}" alt="${m.caption||''}" loading="lazy" onclick="openLightboxFiltered('${evId}','${cat}',${globalIdx})">
@@ -1018,7 +1096,7 @@ function openLightboxFiltered(eventId, cat, startGlobalIdx) {
   const ev = allEvents.find(e => e.id === eventId);
   if (!ev) return;
   const media = ev.media || [];
-  lbItems = cat ? media.filter(m => m.category === cat) : media;
+  lbItems = cat ? media.filter(m => hasTag(m, cat)) : media;
   // 在过滤后的列表里找起始位置
   const startItem = media[startGlobalIdx];
   lbIndex = startItem ? Math.max(0, lbItems.indexOf(startItem)) : 0;
@@ -1052,7 +1130,7 @@ function closeLightbox() {
 function buildThumbs() {
   const container = document.getElementById('lbThumbs');
   container.innerHTML = lbItems.map((m, i) => {
-    const thumb = m.thumb || m.url;
+    const thumb = sized(m, W_FILM);
     return `<div class="lb-thumb${i===lbIndex?' active':''}" id="lbThumb${i}" onclick="showLbItem(${i})">
       <img src="${thumb}" alt="">
     </div>`;
@@ -1085,7 +1163,15 @@ function showLbItem(idx) {
     vid.pause();
     vid.style.display = 'none';
     img.style.display = 'block';
-    img.src = item.url;
+    img.dataset.full = '0';
+    img.src = lbDisplaySrc(item);
+  }
+
+  // 下载按钮指向原图/原视频
+  const dl = document.getElementById('lbDownload');
+  if (dl) {
+    dl.href = item.url;
+    dl.setAttribute('download', decodeURIComponent(item.url.split('/').pop().split('?')[0]));
   }
 
   // scroll thumb into view
@@ -1116,10 +1202,22 @@ function resetImgTransform() {
   applyImgTransform();
 }
 
+// 放大时换成原图 —— 平时用压缩版省流量，一旦捏合放大就取原始文件保证细节
+function ensureFullRes() {
+  const img = document.getElementById('lbImg');
+  const item = lbItems[lbIndex];
+  if (!item || item.type === 'video') return;
+  if (img.dataset.full === '1') return;
+  if (/\.hei[cf]$/i.test(item.url)) return;   // HEIC 原图浏览器打不开，维持转码版
+  img.dataset.full = '1';
+  img.src = item.url;
+}
+
 function applyImgTransform() {
   const img = document.getElementById('lbImg');
   if (img.style.display !== 'none') {
     img.style.transform = `translate(${imgX}px, ${imgY}px) scale(${imgScale})`;
+    if (imgScale > 1.05) ensureFullRes();
   }
 }
 

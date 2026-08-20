@@ -721,6 +721,37 @@
       color: var(--moss);
     }
 
+    .cat-subtabs {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      margin: 6px 0 4px;
+      padding-left: 10px;
+      border-left: 2px solid var(--sage-light);
+    }
+
+    .cat-subtabs:empty { display: none; }
+
+    .cat-subtab {
+      padding: 3px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      background: rgba(0,0,0,0.03);
+      font-size: 0.64rem;
+      font-family: 'Noto Sans SC', sans-serif;
+      color: var(--text-mid);
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+
+    .cat-subtab.active {
+      background: var(--moss, #6b7f5e);
+      border-color: var(--moss, #6b7f5e);
+      color: white;
+    }
+
+    .cat-subtab:hover:not(.active) { border-color: var(--sage); }
+
     /* ═══════════════════════════════
        EMPTY STATE
     ═══════════════════════════════ */
@@ -880,7 +911,7 @@ const LEGACY_HOSTS = ['xn--6frp9hpxx0uau00e.cn', '深圳活动群.cn'];
 // 比对里面的 APP_VERSION，不一致说明手上这份是缓存的旧版，自动刷新一次。
 //
 // ★ 每次修改 index.html 后，把下面这个版本号改掉，否则自检不会触发。
-const APP_VERSION = '2026-08-20b';
+const APP_VERSION = '2026-08-20c';
 
 async function checkForUpdate() {
   try {
@@ -1121,14 +1152,19 @@ function renderTimeline(events) {
     }).join('');
 
     // 获取该活动的标签列表（一张照片可属于多个标签）
-    const cats = [...new Set(media.flatMap(m => tagsOf(m)))];
+    // 一级分类来自 tagTree（云函数按目录层级生成）；旧数据没有 tagTree 时退回压平模式
+    const tree = Array.isArray(ev.tagTree) && ev.tagTree.length
+      ? ev.tagTree
+      : [...new Set(media.flatMap(m => tagsOf(m)))].map(n => ({ name: n, children: [] }));
+    const cats = tree.map(t => t.name);
     const hasCats = cats.length > 0;
 
     const catTabsHTML = hasCats ? `
       <div class="cat-tabs" id="cattabs_${ev.id}">
         <button class="cat-tab active" onclick="filterCat('${ev.id}','',this)">全部</button>
         ${cats.map(c => `<button class="cat-tab" onclick="filterCat('${ev.id}','${c}',this)">${catIcon(c)} ${c}</button>`).join('')}
-      </div>` : '';
+      </div>
+      <div class="cat-subtabs" id="subtabs_${ev.id}"></div>` : '';
 
     return `<div class="timeline-item">
       <div class="timeline-spine">
@@ -1189,11 +1225,37 @@ function renderGrid(events) {
 }
 
 // ── 分类筛选 ──
+// 点一级分类：高亮它，并把它下面的二级子分类展开成一排 chips
 function filterCat(evId, cat, btn) {
-  // 更新 tab 状态
   document.querySelectorAll(`#cattabs_${evId} .cat-tab`).forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
 
+  const ev = allEvents.find(e => e.id === evId);
+  if (!ev) return;
+
+  const sub = document.getElementById('subtabs_' + evId);
+  if (sub) {
+    const node = (ev.tagTree || []).find(t => t.name === cat);
+    const kids = (node && node.children) || [];
+    sub.innerHTML = kids.length
+      ? kids.map(k => `<button class="cat-subtab" onclick="filterSubCat('${evId}','${cat}','${k}',this)">${k}</button>`).join('')
+      : '';
+  }
+
+  applyFilter(evId, cat);
+}
+
+// 点二级子分类：一级保持高亮，只在二级里切换
+function filterSubCat(evId, parent, sub, btn) {
+  const box = document.getElementById('subtabs_' + evId);
+  const wasActive = btn.classList.contains('active');
+  box.querySelectorAll('.cat-subtab').forEach(b => b.classList.remove('active'));
+  if (wasActive) { applyFilter(evId, parent); return; }   // 再点一次取消，退回一级
+  btn.classList.add('active');
+  applyFilter(evId, sub);
+}
+
+function applyFilter(evId, cat) {
   const ev = allEvents.find(e => e.id === evId);
   if (!ev) return;
 

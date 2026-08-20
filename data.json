@@ -14,6 +14,45 @@
       ],
       "circlesKnown": true,
       "cosFolder": "2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南",
+      "tagTree": [
+        {
+          "name": "人物",
+          "children": [
+            "严军-严新玉",
+            "王道忠-严春兰"
+          ]
+        },
+        {
+          "name": "结婚纪念日",
+          "children": []
+        },
+        {
+          "name": "美食",
+          "children": []
+        },
+        {
+          "name": "花絮",
+          "children": []
+        },
+        {
+          "name": "风景",
+          "children": [
+            "中山桥",
+            "刘家峡水库",
+            "扎尕那",
+            "永泰龟城",
+            "洛克之路",
+            "炳灵石窟",
+            "甘肃博物馆",
+            "美仁大草原",
+            "若尔盖-花湖",
+            "莲宝叶则",
+            "阿万仓湿地",
+            "黄河九曲",
+            "黄河石林"
+          ]
+        }
+      ],
       "media": [
         {
           "type": "photo",
@@ -570,6 +609,24 @@
       ],
       "circlesKnown": true,
       "cosFolder": "2026-05-02_出游_粤赣三日自驾_广东韶关·江西崇义",
+      "tagTree": [
+        {
+          "name": "人物",
+          "children": []
+        },
+        {
+          "name": "花絮",
+          "children": []
+        },
+        {
+          "name": "足迹",
+          "children": []
+        },
+        {
+          "name": "风景",
+          "children": []
+        }
+      ],
       "media": [
         {
           "type": "photo",
@@ -2854,6 +2911,20 @@
       ],
       "circlesKnown": true,
       "cosFolder": "2026-02-23_聚会_春节同学相聚_广东深圳",
+      "tagTree": [
+        {
+          "name": "合影",
+          "children": []
+        },
+        {
+          "name": "美食",
+          "children": []
+        },
+        {
+          "name": "花絮",
+          "children": []
+        }
+      ],
       "media": [
         {
           "type": "photo",

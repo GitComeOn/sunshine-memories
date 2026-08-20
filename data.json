@@ -27,10 +27,6 @@
           "children": []
         },
         {
-          "name": "美食",
-          "children": []
-        },
-        {
           "name": "花絮",
           "children": []
         },
@@ -742,19 +738,6 @@
           "category": "风景",
           "_etag": "8366b109320cecb39e6c2433d726b973",
           "_t": 1787148572461,
-          "_ts": "name"
-        },
-        {
-          "type": "photo",
-          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/美食/mmexport1787148588719.jpg",
-          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/美食/mmexport1787148588719.jpg",
-          "caption": "",
-          "tags": [
-            "美食"
-          ],
-          "category": "美食",
-          "_etag": "c01e3b0c194b9349cddaa7764a53cb33",
-          "_t": 1787148588719,
           "_ts": "name"
         },
         {

@@ -411,6 +411,12 @@
       letter-spacing: 0.02em;
     }
 
+    .card-circle-badge.unknown {
+      color: #b4472e;
+      opacity: 1;
+      border-style: dashed;
+    }
+
     .card-type-badge {
       font-size: 0.6rem;
       padding: 2px 8px;
@@ -874,7 +880,7 @@ const LEGACY_HOSTS = ['xn--6frp9hpxx0uau00e.cn', '深圳活动群.cn'];
 // 比对里面的 APP_VERSION，不一致说明手上这份是缓存的旧版，自动刷新一次。
 //
 // ★ 每次修改 index.html 后，把下面这个版本号改掉，否则自检不会触发。
-const APP_VERSION = '2026-08-20a';
+const APP_VERSION = '2026-08-20b';
 
 async function checkForUpdate() {
   try {
@@ -938,7 +944,11 @@ function circleBadges(ev) {
   if (!showCircleBadge) return '';
   const cs = ev.circles || [];
   if (!cs.length) return '';
-  return cs.map(c => `<span class="card-circle-badge">${c}</span>`).join('');
+  // circlesKnown === false 表示这个圈子还没在云函数的 CIRCLES / GROUPS 里配置，
+  // 它不属于任何一条分享链接，只有「全部」看得到。标红提醒。
+  const cls = ev.circlesKnown === false ? 'card-circle-badge unknown' : 'card-circle-badge';
+  const tip = ev.circlesKnown === false ? ' title="圈子未定义，没有对应的分享链接"' : '';
+  return cs.map(c => `<span class="${cls}"${tip}>${c}${ev.circlesKnown === false ? ' ?' : ''}</span>`).join('');
 }
 
 function currentGroup() {

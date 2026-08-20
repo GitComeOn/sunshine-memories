@@ -7,6 +7,8 @@
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
   <meta name="googlebot" content="noindex, nofollow">
   <meta name="baiduspider" content="noindex, nofollow">
+  <!-- meta 缓存指令现代浏览器多半不认，真正生效的是下面 JS 的版本自检 -->
+  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
   <title>Happy Time · 快乐时光</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+SC:wght@300;400;600&family=Noto+Sans+SC:wght@300;400&display=swap" rel="stylesheet">
   <style>
@@ -866,6 +868,36 @@ function lbDisplaySrc(m) {
 //   新域名 shinianji.cn  —— 必须带专属链接才能看，否则随机别名就白设了
 // 等旧域名停用后，把 LEGACY_HOSTS 清空即可。
 const LEGACY_HOSTS = ['xn--6frp9hpxx0uau00e.cn', '深圳活动群.cn'];
+// ── 版本自检 ──────────────────────────────────
+// COS 上的 index.html 会被浏览器缓存，改了前端别人看到的还是旧版。
+// 这里在页面跑起来之后，用 no-store 重新拉一次 index.html，
+// 比对里面的 APP_VERSION，不一致说明手上这份是缓存的旧版，自动刷新一次。
+//
+// ★ 每次修改 index.html 后，把下面这个版本号改掉，否则自检不会触发。
+const APP_VERSION = '2026-08-20a';
+
+async function checkForUpdate() {
+  try {
+    const res = await fetch('index.html?_=' + Date.now(), { cache: 'no-store' });
+    if (!res.ok) return;
+    const text = await res.text();
+    const m = text.match(/APP_VERSION\s*=\s*'([^']+)'/);
+    if (!m || m[1] === APP_VERSION) return;
+
+    // 防刷新循环：同一个新版本号在一次会话里只自动刷新一次
+    let already = false;
+    try { already = sessionStorage.getItem('ht_reloaded') === m[1]; } catch(e) {}
+    if (already) {
+      console.warn('检测到新版本 ' + m[1] + '，但刷新后仍是旧版，可能是 CDN 缓存未过期');
+      return;
+    }
+    try { sessionStorage.setItem('ht_reloaded', m[1]); } catch(e) {}
+
+    console.log('检测到新版本 ' + m[1] + '（当前 ' + APP_VERSION + '），正在刷新');
+    location.reload();
+  } catch(e) { /* 检查失败不影响正常使用 */ }
+}
+
 const LEGACY_DEFAULT_GROUP = 'tx';
 
 function isLegacyHost() {
@@ -929,29 +961,40 @@ async function loadData() {
   if (!g) { showGate(); return; }
   try {
     const res = await fetch(`d-${g}.json?t=` + Date.now());
-    if (!res.ok) throw new Error('no group file');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
     allEvents = data.events || [];
     CI_ON = !!data.ci;
     groupName = data.groupName || '';
     showCircleBadge = !!data.isAll;
-  } catch(e) {
-    // 分圈子文件不存在时回退到全量 data.json（首次部署 / 云函数还没跑）
-    try {
-      const res2 = await fetch('data.json?t=' + Date.now());
-      // 回退到全量 data.json：内容等同「全部」视图
-      const data2 = await res2.json();
-      allEvents = data2.events || [];
-      CI_ON = !!data2.ci;
-      groupName = '全部';
-      showCircleBadge = true;
-    } catch(e2) {
-      allEvents = FALLBACK_DATA.events;
-    }
+  } catch(err) {
+    // 关键：加载失败时绝不回退到全量 data.json。
+    // 那会把其他圈子的内容一并显示出来——一次网络抖动就造成泄露。
+    // 宁可什么都不显示。
+    console.error('加载圈子数据失败:', g, err);
+    showError(g, err);
+    return;
   }
   const label = document.getElementById('groupLabel');
   if (label) label.textContent = groupName;
   init();
+  checkForUpdate();
+}
+
+// 数据加载失败时的提示页。不显示任何活动内容。
+function showError(g, err) {
+  document.querySelector('.hero-stats')?.remove();
+  document.querySelector('.header-nav')?.remove();
+  const main = document.querySelector('.content-area');
+  if (main) main.innerHTML =
+    '<div class="gate">' +
+    '<div class="gate-icon">\u26A0\uFE0F</div>' +
+    '<p class="gate-title">内容加载失败</p>' +
+    '<p class="gate-sub">请检查链接是否完整，或稍后重试<br>' +
+    '<span style="opacity:.55;font-size:.78rem">' + g + ' \u00B7 ' + (err && err.message || '') + '</span></p>' +
+    '</div>';
+  const label = document.getElementById('groupLabel');
+  if (label) label.parentElement.textContent = '记录每一次相聚，珍藏每一个瞬间';
 }
 
 function init() {
@@ -1425,27 +1468,7 @@ function formatDate(dateStr) {
   return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
 }
 
-// ── 内嵌备用数据（data.json 不存在时使用）──
-const FALLBACK_DATA = {
-  events: [
-    {
-      id: "event_001",
-      title: "粤赣三日自驾游",
-      date: "2026-05-02",
-      type: "出游",
-      location: "广东韶关 · 江西赣州",
-      desc: "深圳出发，途经珠玑古巷、梅关古道、丹霞山，感受粤赣山水之美。",
-      media: [
-        {
-          type: "photo",
-          url: "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260505112345_506_319.jpg",
-          thumb: "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260505112345_506_319.jpg",
-          caption: "满堂客家大围"
-        }
-      ]
-    }
-  ]
-};
+
 
 // 启动
 loadData();

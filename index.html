@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 不希望被搜索引擎收录。配合根目录的 robots.txt 一起生效。 -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="baiduspider" content="noindex, nofollow">
   <title>Happy Time · 快乐时光</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+SC:wght@300;400;600&family=Noto+Sans+SC:wght@300;400&display=swap" rel="stylesheet">
   <style>
@@ -230,6 +234,20 @@
     /* ═══════════════════════════════
        TIMELINE / GRID VIEWS
     ═══════════════════════════════ */
+    .gate {
+      text-align: center;
+      padding: 80px 20px 120px;
+      color: var(--ink-light, #8a8578);
+    }
+    .gate-icon { font-size: 2.2rem; opacity: 0.5; margin-bottom: 18px; }
+    .gate-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.05rem;
+      margin: 0 0 10px;
+      color: var(--ink, #3a3730);
+    }
+    .gate-sub { font-size: 0.85rem; margin: 0; line-height: 1.7; }
+
     .content-area {
       max-width: 900px;
       margin: 0 auto;
@@ -843,7 +861,17 @@ function lbDisplaySrc(m) {
 // ── 圈子（?g=tx 同学 / ?g=qp 亲朋 / ?g=all 全部）──
 // 圈子的显示名和「是否全部视图」由云函数写进 d-*.json，前端直接读，
 // 所以新增圈子只需改云函数的 GROUPS，这个文件不用动。
-const DEFAULT_GROUP = 'tx';   // 没带参数时的默认圈子
+// 裸域名（不带 ?g= 参数）的处理：
+//   旧域名 深圳活动群.cn —— 保留默认圈子，因为同学群里历史发过的都是裸链接
+//   新域名 shinianji.cn  —— 必须带专属链接才能看，否则随机别名就白设了
+// 等旧域名停用后，把 LEGACY_HOSTS 清空即可。
+const LEGACY_HOSTS = ['xn--6frp9hpxx0uau00e.cn', '深圳活动群.cn'];
+const LEGACY_DEFAULT_GROUP = 'tx';
+
+function isLegacyHost() {
+  const h = location.hostname.toLowerCase();
+  return LEGACY_HOSTS.some(x => h === x.toLowerCase()) || h === 'localhost' || h === '127.0.0.1';
+}
 
 let showCircleBadge = false;  // 仅「全部」视图为 true
 let groupName = '';
@@ -859,6 +887,21 @@ const CAT_ICON = {
 function catIcon(c) { return CAT_ICON[c] || '📁'; }
 
 // 圈子徽章：仅在「全部」视图显示，一个活动同属多个圈子时并排显示
+// 未带专属链接时的提示页：不加载任何数据
+function showGate() {
+  document.querySelector('.hero-stats')?.remove();
+  document.querySelector('.header-nav')?.remove();
+  const main = document.querySelector('.content-area');
+  if (main) main.innerHTML =
+    '<div class="gate">' +
+    '<div class="gate-icon">🔒</div>' +
+    '<p class="gate-title">请使用专属链接访问</p>' +
+    '<p class="gate-sub">这个相册按圈子分开分享，请打开群里发的完整链接</p>' +
+    '</div>';
+  const label = document.getElementById('groupLabel');
+  if (label) label.parentElement.textContent = '记录每一次相聚，珍藏每一个瞬间';
+}
+
 function circleBadges(ev) {
   if (!showCircleBadge) return '';
   const cs = ev.circles || [];
@@ -868,7 +911,8 @@ function circleBadges(ev) {
 
 function currentGroup() {
   const g = new URLSearchParams(location.search).get('g');
-  return (g && /^[a-z0-9_-]{1,16}$/i.test(g)) ? g : DEFAULT_GROUP;
+  if (g && /^[a-z0-9_-]{1,16}$/i.test(g)) return g;
+  return isLegacyHost() ? LEGACY_DEFAULT_GROUP : null;   // null = 未提供专属链接
 }
 
 // media 项的标签：新数据用 tags 数组，旧数据回退到 category
@@ -882,6 +926,7 @@ function hasTag(m, t) {
 
 async function loadData() {
   const g = currentGroup();
+  if (!g) { showGate(); return; }
   try {
     const res = await fetch(`d-${g}.json?t=` + Date.now());
     if (!res.ok) throw new Error('no group file');

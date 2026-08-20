@@ -874,6 +874,45 @@
           "_etag": "d7e676929f1252d5b755b4b25b14a029-3",
           "_t": 1786495168000,
           "_ts": "name"
+        },
+        {
+          "type": "video",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/花絮/VID_20260812_084314.mp4",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/花絮/VID_20260812_084314.mp4",
+          "caption": "",
+          "tags": [
+            "花絮"
+          ],
+          "category": "花絮",
+          "_etag": "0a767451be26860140eaa966e7c3d003-8",
+          "_t": 1786495394000,
+          "_ts": "name"
+        },
+        {
+          "type": "video",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/花絮/VID_20260812_084412.mp4",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/花絮/VID_20260812_084412.mp4",
+          "caption": "",
+          "tags": [
+            "花絮"
+          ],
+          "category": "花絮",
+          "_etag": "1fd8675a7238858c69f5a10dc0b7183b-2",
+          "_t": 1786495452000,
+          "_ts": "name"
+        },
+        {
+          "type": "video",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/花絮/VID_20260812_155916.mp4",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/花絮/VID_20260812_155916.mp4",
+          "caption": "",
+          "tags": [
+            "花絮"
+          ],
+          "category": "花絮",
+          "_etag": "ebdaf255f2fe254580e635f72c4ba8f0-4",
+          "_t": 1786521556000,
+          "_ts": "name"
         }
       ],
       "_auto": {

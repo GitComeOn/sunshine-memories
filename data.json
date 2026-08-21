@@ -1024,6 +1024,20 @@
         },
         {
           "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/阿万仓湿地/IMG_20260813_103506.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/阿万仓湿地/IMG_20260813_103506.jpg",
+          "caption": "",
+          "tags": [
+            "风景",
+            "阿万仓湿地"
+          ],
+          "category": "风景",
+          "_etag": "bea53006aa0a93944ed2e3a3405f6e09",
+          "_t": 1786588506000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
           "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/美食/IMG_20260813_120946.jpg",
           "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/美食/IMG_20260813_120946.jpg",
           "caption": "",
@@ -1059,6 +1073,20 @@
           "category": "美食",
           "_etag": "8bad4c8e1efc9d10494272bdd5230d10",
           "_t": 1786595234000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/阿万仓湿地/IMG_20260813_133521.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/阿万仓湿地/IMG_20260813_133521.jpg",
+          "caption": "",
+          "tags": [
+            "风景",
+            "阿万仓湿地"
+          ],
+          "category": "风景",
+          "_etag": "0a75ce3d08ca1906f3196ae7b5fe55dc",
+          "_t": 1786599321000,
           "_ts": "exif"
         },
         {
@@ -1424,6 +1452,20 @@
         },
         {
           "type": "video",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/阿万仓湿地/VID_20260813_102245.mp4",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/阿万仓湿地/VID_20260813_102245.mp4",
+          "caption": "",
+          "tags": [
+            "风景",
+            "阿万仓湿地"
+          ],
+          "category": "风景",
+          "_etag": "07ff68e028f341eaf3e544087a6d076e-3",
+          "_t": 1786587765000,
+          "_ts": "name"
+        },
+        {
+          "type": "video",
           "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/花絮/VID_20260813_163718.mp4",
           "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/花絮/VID_20260813_163718.mp4",
           "caption": "",
@@ -1446,6 +1488,34 @@
           "category": "花絮",
           "_etag": "913ee65cd3b1609f30e1027a1d758dfb",
           "_t": 1786610281000,
+          "_ts": "name"
+        },
+        {
+          "type": "video",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/阿万仓湿地/mmexport1787148654161.mp4",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/阿万仓湿地/mmexport1787148654161.mp4",
+          "caption": "",
+          "tags": [
+            "风景",
+            "阿万仓湿地"
+          ],
+          "category": "风景",
+          "_etag": "5123e093278a98730316625ea92a6540",
+          "_t": 1787148654161,
+          "_ts": "name"
+        },
+        {
+          "type": "video",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/阿万仓湿地/mmexport1787148659422.mp4",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/阿万仓湿地/mmexport1787148659422.mp4",
+          "caption": "",
+          "tags": [
+            "风景",
+            "阿万仓湿地"
+          ],
+          "category": "风景",
+          "_etag": "9ec7997bfcf434b2b5470b6aa8d380dc",
+          "_t": 1787148659422,
           "_ts": "name"
         },
         {

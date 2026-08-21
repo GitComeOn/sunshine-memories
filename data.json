@@ -2265,6 +2265,20 @@
         },
         {
           "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/若尔盖-花湖/IMG_20260811_160800.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/若尔盖-花湖/IMG_20260811_160800.jpg",
+          "caption": "",
+          "tags": [
+            "风景",
+            "若尔盖-花湖"
+          ],
+          "category": "风景",
+          "_etag": "2c902de5fe7075c78713a0bed108f02f",
+          "_t": 1786435680000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
           "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/若尔盖-花湖/IMG_20260811_163657.jpg",
           "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/若尔盖-花湖/IMG_20260811_163657.jpg",
           "caption": "",
@@ -4352,6 +4366,48 @@
           "category": "风景",
           "_etag": "8a902c39e01e36b4f48478fbf8615752-4",
           "_t": 1786347922000,
+          "_ts": "name"
+        },
+        {
+          "type": "video",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/若尔盖-花湖/VID_20260811_131714.mp4",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/若尔盖-花湖/VID_20260811_131714.mp4",
+          "caption": "",
+          "tags": [
+            "风景",
+            "若尔盖-花湖"
+          ],
+          "category": "风景",
+          "_etag": "5735d22c3be79a5fc764e57aaf06d6d1-2",
+          "_t": 1786425434000,
+          "_ts": "name"
+        },
+        {
+          "type": "video",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/若尔盖-花湖/VID_20260811_134403.mp4",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/若尔盖-花湖/VID_20260811_134403.mp4",
+          "caption": "",
+          "tags": [
+            "风景",
+            "若尔盖-花湖"
+          ],
+          "category": "风景",
+          "_etag": "787e1d540fb02f776d448d32df5cb55b-2",
+          "_t": 1786427043000,
+          "_ts": "name"
+        },
+        {
+          "type": "video",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/若尔盖-花湖/VID_20260811_153201.mp4",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/若尔盖-花湖/VID_20260811_153201.mp4",
+          "caption": "",
+          "tags": [
+            "风景",
+            "若尔盖-花湖"
+          ],
+          "category": "风景",
+          "_etag": "ee453b43b0fff05a5c334bb1eb99fc90-3",
+          "_t": 1786433521000,
           "_ts": "name"
         },
         {

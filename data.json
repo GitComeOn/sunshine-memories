@@ -1442,6 +1442,34 @@
         },
         {
           "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/洛克之路/IMG_20260810_145003.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/洛克之路/IMG_20260810_145003.jpg",
+          "caption": "",
+          "tags": [
+            "风景",
+            "洛克之路"
+          ],
+          "category": "风景",
+          "_etag": "c390b6610dabd02714a14f8f63ed0759",
+          "_t": 1786344603000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/洛克之路/IMG_20260810_145033.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/洛克之路/IMG_20260810_145033.jpg",
+          "caption": "",
+          "tags": [
+            "风景",
+            "洛克之路"
+          ],
+          "category": "风景",
+          "_etag": "f51929a5a73ce9aac2f905f5605cbfdf",
+          "_t": 1786344633000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
           "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/花絮/IMG_20260810_163212.jpg",
           "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/花絮/IMG_20260810_163212.jpg",
           "caption": "",
@@ -3204,6 +3232,76 @@
           "category": "结婚纪念日",
           "_etag": "70cfe619287b695e83ca6f7433604079-4",
           "_t": 1786193818000,
+          "_ts": "name"
+        },
+        {
+          "type": "video",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/洛克之路/VID_20260810_104034.mp4",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/洛克之路/VID_20260810_104034.mp4",
+          "caption": "",
+          "tags": [
+            "风景",
+            "洛克之路"
+          ],
+          "category": "风景",
+          "_etag": "0f782f544cd7f538028ce80687bb24c3-4",
+          "_t": 1786329634000,
+          "_ts": "name"
+        },
+        {
+          "type": "video",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/洛克之路/VID_20260810_104345.mp4",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/洛克之路/VID_20260810_104345.mp4",
+          "caption": "",
+          "tags": [
+            "风景",
+            "洛克之路"
+          ],
+          "category": "风景",
+          "_etag": "6ee2063ed9dfd0367836a6cea3a12ab4-7",
+          "_t": 1786329825000,
+          "_ts": "name"
+        },
+        {
+          "type": "video",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/洛克之路/VID_20260810_105209.mp4",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/洛克之路/VID_20260810_105209.mp4",
+          "caption": "",
+          "tags": [
+            "风景",
+            "洛克之路"
+          ],
+          "category": "风景",
+          "_etag": "f96317b4a67a295191737bc5c0f0e1f5-5",
+          "_t": 1786330329000,
+          "_ts": "name"
+        },
+        {
+          "type": "video",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/洛克之路/VID_20260810_110936.mp4",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/洛克之路/VID_20260810_110936.mp4",
+          "caption": "",
+          "tags": [
+            "风景",
+            "洛克之路"
+          ],
+          "category": "风景",
+          "_etag": "6e2fc4b510defeab8e2520a08974bf82-6",
+          "_t": 1786331376000,
+          "_ts": "name"
+        },
+        {
+          "type": "video",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/洛克之路/VID_20260810_130542.mp4",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/洛克之路/VID_20260810_130542.mp4",
+          "caption": "",
+          "tags": [
+            "风景",
+            "洛克之路"
+          ],
+          "category": "风景",
+          "_etag": "500cefebab3585f80e8699de8931ca17-3",
+          "_t": 1786338342000,
           "_ts": "name"
         },
         {

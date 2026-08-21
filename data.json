@@ -5098,6 +5098,34 @@
         },
         {
           "type": "video",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/扎尕那/VID_20260810_191519.mp4",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/扎尕那/VID_20260810_191519.mp4",
+          "caption": "",
+          "tags": [
+            "风景",
+            "扎尕那"
+          ],
+          "category": "风景",
+          "_etag": "5bcac5716f1f59578f845499bd468263-5",
+          "_t": 1786360519000,
+          "_ts": "name"
+        },
+        {
+          "type": "video",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/扎尕那/VID_20260811_071456.mp4",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/扎尕那/VID_20260811_071456.mp4",
+          "caption": "",
+          "tags": [
+            "风景",
+            "扎尕那"
+          ],
+          "category": "风景",
+          "_etag": "a38e5fe92627ec027bd5b4bb0659532f-3",
+          "_t": 1786403696000,
+          "_ts": "name"
+        },
+        {
+          "type": "video",
           "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/若尔盖-花湖/VID_20260811_131714.mp4",
           "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/若尔盖-花湖/VID_20260811_131714.mp4",
           "caption": "",

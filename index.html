@@ -9,7 +9,7 @@
   <meta name="baiduspider" content="noindex, nofollow">
   <!-- meta 缓存指令现代浏览器多半不认，真正生效的是下面 JS 的版本自检 -->
   <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
-  <title>Happy Time · 快乐时光</title>
+  <title>拾念集 · Happy Time</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+SC:wght@300;400;600&family=Noto+Sans+SC:wght@300;400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -63,21 +63,22 @@
     }
 
     .site-logo {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 1.4rem;
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
       color: var(--moss);
-      letter-spacing: 0.02em;
+      letter-spacing: 0.14em;
     }
 
     .site-logo span {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 0.75rem;
-      font-style: normal;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.72rem;
+      font-weight: 400;
       color: var(--text-light);
       display: block;
-      letter-spacing: 0.15em;
-      margin-top: -2px;
+      letter-spacing: 0.06em;
+      margin-top: 1px;
     }
 
     .header-nav {
@@ -141,12 +142,37 @@
       margin-bottom: 8px;
     }
 
-    .hero-subtitle {
+    .hero-poem {
+      margin: 14px 0 10px;
+    }
+
+    .hero-poem p {
       font-family: 'Noto Serif SC', serif;
-      font-size: 0.85rem;
+      font-size: clamp(0.9rem, 3.4vw, 1.05rem);
       color: var(--text-mid);
       font-weight: 300;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.26em;
+      text-indent: 0.26em;   /* 抵消末字后多出的字距，视觉居中 */
+      line-height: 1.9;
+      margin: 0;
+    }
+
+    .hero-poem-src {
+      display: block;
+      font-family: 'Noto Serif SC', serif;
+      font-size: 0.66rem;
+      color: var(--text-light);
+      letter-spacing: 0.12em;
+      margin-top: 6px;
+      opacity: 0.75;
+    }
+
+    .hero-subtitle {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 0.78rem;
+      color: var(--text-light);
+      font-weight: 300;
+      letter-spacing: 0.18em;
       margin-bottom: 28px;
     }
 
@@ -753,6 +779,48 @@
     .cat-subtab:hover:not(.active) { border-color: var(--sage); }
 
     /* ═══════════════════════════════
+       BGM
+    ═══════════════════════════════ */
+    .bgm-btn {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--sage-light);
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(6px);
+      color: var(--moss);
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      transition: all 0.2s;
+      z-index: 900;
+      opacity: 0.55;
+    }
+
+    .bgm-btn:hover { opacity: 1; }
+
+    .bgm-btn.playing {
+      opacity: 1;
+      background: var(--sage);
+      border-color: var(--sage);
+      color: #fff;
+      animation: bgmSpin 6s linear infinite;
+    }
+
+    @keyframes bgmSpin { to { transform: rotate(360deg); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .bgm-btn.playing { animation: none; }
+    }
+
+    @media (max-width: 640px) {
+      .bgm-btn { right: 12px; bottom: 12px; width: 38px; height: 38px; }
+    }
+
+    /* ═══════════════════════════════
        EMPTY STATE
     ═══════════════════════════════ */
     .empty-state {
@@ -795,8 +863,8 @@
 <header class="site-header">
   <div class="header-inner">
     <div class="site-logo">
-      Happy Time
-      <span>快乐时光 · 我们的回忆</span>
+      拾念集
+      <span>Happy Time</span>
     </div>
     <nav class="header-nav">
       <button class="nav-btn active" onclick="setView('timeline', this)">时间线</button>
@@ -809,7 +877,12 @@
 <section class="hero">
   <div class="hero-eyebrow">Our Memories</div>
   <h1 class="hero-title">Happy Time</h1>
-  <p class="hero-subtitle">记录每一次相聚，珍藏每一个瞬间 · <span id="groupLabel"></span></p>
+  <div class="hero-poem">
+    <p>人生到处知何似</p>
+    <p>应似飞鸿踏雪泥</p>
+    <span class="hero-poem-src">苏轼 · 和子由渑池怀旧</span>
+  </div>
+  <p class="hero-subtitle"><span id="groupLabel"></span></p>
   <div class="hero-stats" id="heroStats">
     <div class="stat-item">
       <div class="stat-num" id="statEvents">0</div>
@@ -842,6 +915,10 @@
   <div class="timeline-view" id="timelineView"></div>
   <div class="grid-view" id="gridView"></div>
 </main>
+
+<!-- BGM -->
+<button class="bgm-btn" id="bgmBtn" onclick="toggleBgm()" title="背景音乐" aria-label="背景音乐">♪</button>
+<audio id="bgmAudio" loop preload="none"></audio>
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
@@ -905,13 +982,49 @@ function lbDisplaySrc(m) {
 //   新域名 shinianji.cn  —— 必须带专属链接才能看，否则随机别名就白设了
 // 等旧域名停用后，把 LEGACY_HOSTS 清空即可。
 const LEGACY_HOSTS = ['xn--6frp9hpxx0uau00e.cn', '深圳活动群.cn'];
+// ── 背景音乐 ──────────────────────────────────────────
+// 默认不播。浏览器普遍拦截带声音的自动播放，而且别人可能在地铁上、
+// 办公室里点开链接，突然出声体验很差。点右下角音符才开始。
+// 换曲子只需改这个文件名（文件放在广州媒体桶根目录）。
+const BGM_FILE = '钢琴曲 - 理查德·克莱德曼 - 秋日的私语.mp3';
+const BGM_URL  = 'https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/' + encodeURIComponent(BGM_FILE);
+
+function toggleBgm() {
+  const a = document.getElementById('bgmAudio');
+  const b = document.getElementById('bgmBtn');
+  if (!a || !b) return;
+
+  if (!a.src) { a.src = BGM_URL; a.volume = 0.35; }   // 首次点击才真正加载，不浪费流量
+
+  if (a.paused) {
+    a.play().then(() => {
+      b.classList.add('playing');
+      try { sessionStorage.setItem('ht_bgm', '1'); } catch(e) {}
+    }).catch(err => {
+      console.warn('音乐播放失败:', err);
+      b.title = '音乐加载失败';
+    });
+  } else {
+    a.pause();
+    b.classList.remove('playing');
+    try { sessionStorage.removeItem('ht_bgm'); } catch(e) {}
+  }
+}
+
+// 同一次会话内翻页/刷新后，如果之前开着就继续播
+function restoreBgm() {
+  let want = false;
+  try { want = sessionStorage.getItem('ht_bgm') === '1'; } catch(e) {}
+  if (want) toggleBgm();
+}
+
 // ── 版本自检 ──────────────────────────────────
 // COS 上的 index.html 会被浏览器缓存，改了前端别人看到的还是旧版。
 // 这里在页面跑起来之后，用 no-store 重新拉一次 index.html，
 // 比对里面的 APP_VERSION，不一致说明手上这份是缓存的旧版，自动刷新一次。
 //
 // ★ 每次修改 index.html 后，把下面这个版本号改掉，否则自检不会触发。
-const APP_VERSION = '2026-08-20c';
+const APP_VERSION = '2026-08-22a';
 
 async function checkForUpdate() {
   try {
@@ -1019,6 +1132,7 @@ async function loadData() {
   const label = document.getElementById('groupLabel');
   if (label) label.textContent = groupName;
   init();
+  restoreBgm();
   checkForUpdate();
 }
 

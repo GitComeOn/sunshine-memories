@@ -9864,6 +9864,27 @@
         "type": "聚会",
         "location": "广东深圳"
       }
+    },
+    {
+      "id": "cos_2019_07_28_1b2yisu",
+      "title": "新疆自驾游",
+      "date": "2019-07-28",
+      "type": "出游",
+      "location": "天山沿线",
+      "desc": "",
+      "cover": "",
+      "circles": [
+        "亲朋"
+      ],
+      "circlesKnown": true,
+      "cosFolder": "2019-07-28_亲朋_出游_新疆自驾游_天山沿线",
+      "tagTree": [],
+      "media": [],
+      "_auto": {
+        "title": "新疆自驾游",
+        "type": "出游",
+        "location": "天山沿线"
+      }
     }
   ]
 }

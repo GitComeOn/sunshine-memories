@@ -108,7 +108,7 @@
        HERO
     ═══════════════════════════════ */
     .hero {
-      padding: 48px 20px 36px;
+      padding: 44px 20px 34px;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -142,29 +142,58 @@
       margin-bottom: 8px;
     }
 
+    /* 大标题与竖排诗句并列成一组，而不是往下堆行 */
+    .hero-main {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(16px, 3.5vw, 38px);
+      margin-bottom: 26px;
+    }
+
+    .hero-rule {
+      width: 1px;
+      align-self: stretch;
+      min-height: 96px;
+      background: linear-gradient(to bottom,
+        transparent, var(--sage-light) 22%, var(--sage-light) 78%, transparent);
+    }
+
+    /* 竖排三列，从左往右：上句 / 下句 / 落款
+       vertical-lr 让列序跟随现代阅读习惯（传统竖排是 vertical-rl 从右往左）。
+       注意：竖排下 flex 主轴跟着书写方向转 90°，
+       要分列必须用 column，用 row 会把两句接成一根长条。 */
     .hero-poem {
-      margin: 14px 0 10px;
+      writing-mode: vertical-lr;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: clamp(8px, 2vw, 16px);
     }
 
     .hero-poem p {
       font-family: 'Noto Serif SC', serif;
-      font-size: clamp(0.9rem, 3.4vw, 1.05rem);
+      font-size: clamp(0.86rem, 3vw, 1.02rem);
       color: var(--text-mid);
       font-weight: 300;
-      letter-spacing: 0.26em;
-      text-indent: 0.26em;   /* 抵消末字后多出的字距，视觉居中 */
-      line-height: 1.9;
+      letter-spacing: 0.2em;
+      line-height: 1;
       margin: 0;
     }
 
+    /* 错落：下句比上句低一格，落款再低一截，避免三列齐头像表格 */
+    .hero-poem p:nth-of-type(2) { margin-top: 1.5em; }
+
+    /* 落款底部与下句末字（泥）齐平。
+       竖排下交叉轴是垂直方向，flex-end 即底部对齐；
+       用固定 em 偏移会因落款字号更小而算不准，且随 clamp 缩放失真。 */
     .hero-poem-src {
-      display: block;
       font-family: 'Noto Serif SC', serif;
-      font-size: 0.66rem;
+      font-size: clamp(0.6rem, 2vw, 0.68rem);
       color: var(--text-light);
-      letter-spacing: 0.12em;
-      margin-top: 6px;
-      opacity: 0.75;
+      letter-spacing: 0.16em;
+      align-self: flex-end;
+      opacity: 0.7;
     }
 
     .hero-subtitle {
@@ -173,7 +202,12 @@
       color: var(--text-light);
       font-weight: 300;
       letter-spacing: 0.18em;
-      margin-bottom: 28px;
+      margin: 6px 0 0;
+    }
+
+    @media (max-width: 420px) {
+      .hero-main { gap: 14px; }
+      .hero-rule { min-height: 84px; }
     }
 
     /* stats row */
@@ -875,14 +909,19 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-eyebrow">Our Memories</div>
-  <h1 class="hero-title">Happy Time</h1>
-  <div class="hero-poem">
-    <p>人生到处知何似</p>
-    <p>应似飞鸿踏雪泥</p>
-    <span class="hero-poem-src">苏轼 · 和子由渑池怀旧</span>
+  <div class="hero-main">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Our Memories</div>
+      <h1 class="hero-title">Happy Time</h1>
+      <p class="hero-subtitle"><span id="groupLabel"></span></p>
+    </div>
+    <div class="hero-rule"></div>
+    <div class="hero-poem" aria-label="人生到处知何似，应似飞鸿踏雪泥　苏轼《和子由渑池怀旧》">
+      <p>人生到处知何似</p>
+      <p>应似飞鸿踏雪泥</p>
+      <span class="hero-poem-src">苏轼</span>
+    </div>
   </div>
-  <p class="hero-subtitle"><span id="groupLabel"></span></p>
   <div class="hero-stats" id="heroStats">
     <div class="stat-item">
       <div class="stat-num" id="statEvents">0</div>
@@ -1024,7 +1063,7 @@ function restoreBgm() {
 // 比对里面的 APP_VERSION，不一致说明手上这份是缓存的旧版，自动刷新一次。
 //
 // ★ 每次修改 index.html 后，把下面这个版本号改掉，否则自检不会触发。
-const APP_VERSION = '2026-08-22a';
+const APP_VERSION = '2026-08-22e';
 
 async function checkForUpdate() {
   try {

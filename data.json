@@ -9878,8 +9878,118 @@
       ],
       "circlesKnown": true,
       "cosFolder": "2019-07-28_亲朋_出游_新疆自驾游_天山沿线",
-      "tagTree": [],
-      "media": [],
+      "tagTree": [
+        {
+          "name": "人物",
+          "children": []
+        }
+      ],
+      "media": [
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2019-07-28_亲朋_出游_新疆自驾游_天山沿线/人物/IMG_8614.JPG",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2019-07-28_亲朋_出游_新疆自驾游_天山沿线/人物/IMG_8614.JPG",
+          "caption": "",
+          "tags": [
+            "人物"
+          ],
+          "category": "人物",
+          "_etag": "d29b61f8e66c3b329cbb5be7158a9e28",
+          "_t": 1564920531000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2019-07-28_亲朋_出游_新疆自驾游_天山沿线/人物/IMG_8615.JPG",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2019-07-28_亲朋_出游_新疆自驾游_天山沿线/人物/IMG_8615.JPG",
+          "caption": "",
+          "tags": [
+            "人物"
+          ],
+          "category": "人物",
+          "_etag": "2b7b0ccf64805e991508aadaf3348e1e",
+          "_t": 1564920584000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2019-07-28_亲朋_出游_新疆自驾游_天山沿线/人物/IMG_8618.JPG",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2019-07-28_亲朋_出游_新疆自驾游_天山沿线/人物/IMG_8618.JPG",
+          "caption": "",
+          "tags": [
+            "人物"
+          ],
+          "category": "人物",
+          "_etag": "ff5182549f3feed305851dea9b0860ae",
+          "_t": 1564920635000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2019-07-28_亲朋_出游_新疆自驾游_天山沿线/人物/IMG_8623.JPG",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2019-07-28_亲朋_出游_新疆自驾游_天山沿线/人物/IMG_8623.JPG",
+          "caption": "",
+          "tags": [
+            "人物"
+          ],
+          "category": "人物",
+          "_etag": "0b7979f3ba89364f083e1a874b60a43b",
+          "_t": 1564920793000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2019-07-28_亲朋_出游_新疆自驾游_天山沿线/人物/IMG_8625.JPG",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2019-07-28_亲朋_出游_新疆自驾游_天山沿线/人物/IMG_8625.JPG",
+          "caption": "",
+          "tags": [
+            "人物"
+          ],
+          "category": "人物",
+          "_etag": "06fda2b5d0a4d965ea83bccea177952f",
+          "_t": 1564920815000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2019-07-28_亲朋_出游_新疆自驾游_天山沿线/人物/IMG_8628.JPG",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2019-07-28_亲朋_出游_新疆自驾游_天山沿线/人物/IMG_8628.JPG",
+          "caption": "",
+          "tags": [
+            "人物"
+          ],
+          "category": "人物",
+          "_etag": "6f0b33dcecdf549a9ac7a2e94d04ed02",
+          "_t": 1564920994000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2019-07-28_亲朋_出游_新疆自驾游_天山沿线/人物/IMG_8629.JPG",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2019-07-28_亲朋_出游_新疆自驾游_天山沿线/人物/IMG_8629.JPG",
+          "caption": "",
+          "tags": [
+            "人物"
+          ],
+          "category": "人物",
+          "_etag": "b517b8d64c07fca66ccd6f290299aaca",
+          "_t": 1564921029000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2019-07-28_亲朋_出游_新疆自驾游_天山沿线/人物/IMG_8634.JPG",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2019-07-28_亲朋_出游_新疆自驾游_天山沿线/人物/IMG_8634.JPG",
+          "caption": "",
+          "tags": [
+            "人物"
+          ],
+          "category": "人物",
+          "_etag": "5042ebbf1abcead4d5770a7c8e38dc13",
+          "_t": 1564921107000,
+          "_ts": "exif"
+        }
+      ],
       "_auto": {
         "title": "新疆自驾游",
         "type": "出游",

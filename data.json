@@ -7457,6 +7457,20 @@
         },
         {
           "type": "video",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/人物/严军-严新玉/VID_20260814_125750.mp4",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/人物/严军-严新玉/VID_20260814_125750.mp4",
+          "caption": "",
+          "tags": [
+            "人物",
+            "严军-严新玉"
+          ],
+          "category": "人物",
+          "_etag": "8aa3dac08ea13c988fed076bf552e70c-2",
+          "_t": 1786683470000,
+          "_ts": "name"
+        },
+        {
+          "type": "video",
           "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/永泰龟城/dji_fly_20260815_114958_31_1786766917735_video.mp4",
           "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/风景/永泰龟城/dji_fly_20260815_114958_31_1786766917735_video.mp4",
           "caption": "",

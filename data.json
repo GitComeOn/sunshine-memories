@@ -18,6 +18,7 @@
         {
           "name": "人物",
           "children": [
+            "严军-严新玉",
             "合影",
             "王道忠-严春兰"
           ]
@@ -506,6 +507,20 @@
           "category": "人物",
           "_etag": "9754a32ff6ec17404967bbfc8bcfc1e2",
           "_t": 1786159273000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/人物/严军-严新玉/IMG_20260808_112220.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-08-07_亲朋_出游_甘南自驾游_甘肃甘南/人物/严军-严新玉/IMG_20260808_112220.jpg",
+          "caption": "",
+          "tags": [
+            "人物",
+            "严军-严新玉"
+          ],
+          "category": "人物",
+          "_etag": "445f0d10d3276a6dabaa6d5853fc29d2",
+          "_t": 1786159340000,
           "_ts": "exif"
         },
         {

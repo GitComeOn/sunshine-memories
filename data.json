@@ -9882,6 +9882,10 @@
         {
           "name": "人物",
           "children": []
+        },
+        {
+          "name": "花絮",
+          "children": []
         }
       ],
       "media": [
@@ -10507,6 +10511,19 @@
           "category": "人物",
           "_etag": "fbd8fc4ab27f093bde728213b4beb524",
           "_t": 1787101513000,
+          "_ts": "name"
+        },
+        {
+          "type": "video",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2019-07-28_亲朋_出游_新疆自驾游_天山沿线/花絮/VID_20190730_222519.mp4",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2019-07-28_亲朋_出游_新疆自驾游_天山沿线/花絮/VID_20190730_222519.mp4",
+          "caption": "",
+          "tags": [
+            "花絮"
+          ],
+          "category": "花絮",
+          "_etag": "407eaafee3390ad5c88a4958166b25d5-19",
+          "_t": 1564496719000,
           "_ts": "name"
         }
       ],

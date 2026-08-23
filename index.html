@@ -408,13 +408,15 @@
       background: var(--warm);
     }
 
+    .cover-img { cursor: pointer; }
+
     .cover-img img,
     .cover-img video {
       width: 100%; height: 100%;
       object-fit: cover;
       display: block;
       transition: transform 0.4s ease;
-      cursor: pointer;
+      pointer-events: none;   /* 点击交给父容器，video 会吞掉自身的 click */
     }
 
     .timeline-card:hover .cover-img img,
@@ -1073,7 +1075,7 @@ function restoreBgm() {
 // 比对里面的 APP_VERSION，不一致说明手上这份是缓存的旧版，自动刷新一次。
 //
 // ★ 每次修改 index.html 后，把下面这个版本号改掉，否则自检不会触发。
-const APP_VERSION = '2026-08-23c';
+const APP_VERSION = '2026-08-23d';
 
 async function checkForUpdate() {
   try {
@@ -1148,12 +1150,13 @@ function circleBadges(ev) {
 // 未开数据万象时改用 <video preload="metadata">，浏览器只拉文件头就能画出首帧。
 // 开了 CI 之后 sized() 返回的是截帧 jpg，那时用 <img> 即可。
 function coverEl(m, w, onclickAttr, alt) {
-  const src = sized(m, w);
-  if (m.type === 'video' && !CI_ON) {
-    return `<video src="${src}#t=0.5" preload="metadata" muted playsinline `
-         + `onclick="${onclickAttr}"></video>`;
+  // 视频优先用云函数给的封面图（转码时 ffmpeg 导出的 X.mp4.jpg）。
+  // 没有封面图才退回 <video> 拉首帧——那个每张要发好几次 Range 请求，很慢。
+  if (m.type === 'video' && !m.poster && !CI_ON) {
+    return `<video src="${m.url}#t=0.5" preload="metadata" muted playsinline></video>`;
   }
-  return `<img src="${src}" alt="${alt || ''}" loading="lazy" onclick="${onclickAttr}">`;
+  const src = m.poster || sized(m, w);
+  return `<img src="${src}" alt="${alt || ''}" loading="lazy">`;
 }
 
 function currentGroup() {
@@ -1320,8 +1323,8 @@ function renderTimeline(events) {
       const isLast = mi === 3 && extra > 0;
       const thumb = sized(m, W_COVER);
       const globalIdx = media.indexOf(m);
-      return `<div class="cover-img${m.type==='video'?' has-video':''}">
-        ${coverEl(m, W_COVER, `openLightbox('${ev.id}', ${globalIdx})`, m.caption)}
+      return `<div class="cover-img${m.type==='video'?' has-video':''}" onclick="openLightbox('${ev.id}', ${globalIdx})">
+        ${coverEl(m, W_COVER, null, m.caption)}
         ${isLast ? `<div class="cover-more">+${extra}</div>` : ''}
       </div>`;
     }).join('');
@@ -1389,9 +1392,10 @@ function renderGrid(events) {
     return `<div class="grid-card" style="animation-delay:${i*0.05}s" onclick="openLightbox('${ev.id}', 0)">
       <div class="grid-cover">
         ${thumb
-          ? (first.type === 'video' && !CI_ON
-              ? `<video src="${thumb}#t=0.5" preload="metadata" muted playsinline></video>`
-              : `<img src="${thumb}" alt="${ev.title}" loading="lazy">`)
+          ? (first.poster ? `<img src="${first.poster}" alt="${ev.title}" loading="lazy">`
+             : (first.type === 'video' && !CI_ON
+                ? `<video src="${first.url}#t=0.5" preload="metadata" muted playsinline></video>`
+                : `<img src="${thumb}" alt="${ev.title}" loading="lazy">`))
           : '<div style="width:100%;height:100%;background:var(--sage-pale)"></div>'}
       </div>
       <div class="grid-info">
@@ -1452,8 +1456,8 @@ function applyFilter(evId, cat) {
     const isLast = mi === 3 && extra > 0;
     const thumb = sized(m, W_COVER);
     const globalIdx = media.indexOf(m);
-    return `<div class="cover-img${m.type==='video'?' has-video':''}">
-      ${coverEl(m, W_COVER, `openLightboxFiltered('${evId}','${cat}',${globalIdx})`, m.caption)}
+    return `<div class="cover-img${m.type==='video'?' has-video':''}" onclick="openLightboxFiltered('${evId}','${cat}',${globalIdx})">
+      ${coverEl(m, W_COVER, null, m.caption)}
       ${isLast ? `<div class="cover-more">+${extra}</div>` : ''}
     </div>`;
   }).join('');
@@ -1501,9 +1505,10 @@ function buildThumbs() {
   container.innerHTML = lbItems.map((m, i) => {
     const thumb = sized(m, W_FILM);
     return `<div class="lb-thumb${i===lbIndex?' active':''}" id="lbThumb${i}" onclick="showLbItem(${i})">
-      ${m.type === 'video' && !CI_ON
-        ? `<video src="${thumb}#t=0.5" preload="metadata" muted playsinline></video>`
-        : `<img src="${thumb}" alt="">`}
+      ${m.poster ? `<img src="${m.poster}" alt="">`
+        : (m.type === 'video' && !CI_ON
+            ? `<video src="${m.url}#t=0.5" preload="metadata" muted playsinline></video>`
+            : `<img src="${thumb}" alt="">`)}
     </div>`;
   }).join('');
 }

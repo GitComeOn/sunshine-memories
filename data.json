@@ -10564,6 +10564,19 @@
           "_etag": "450c950d5f959751aba0ac826051c416",
           "_t": 1564498448000,
           "_ts": "name"
+        },
+        {
+          "type": "video",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2019-07-28_亲朋_出游_新疆自驾游_天山沿线/花絮/VID_20190730_230059.mp4",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2019-07-28_亲朋_出游_新疆自驾游_天山沿线/花絮/VID_20190730_230059.mp4",
+          "caption": "",
+          "tags": [
+            "花絮"
+          ],
+          "category": "花絮",
+          "_etag": "6a76e8cf4573b5903a6c0aaaa60fbd77-2",
+          "_t": 1564498859000,
+          "_ts": "name"
         }
       ],
       "_auto": {

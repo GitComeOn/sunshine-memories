@@ -408,14 +408,17 @@
       background: var(--warm);
     }
 
-    .cover-img img {
+    .cover-img img,
+    .cover-img video {
       width: 100%; height: 100%;
       object-fit: cover;
       display: block;
       transition: transform 0.4s ease;
+      cursor: pointer;
     }
 
-    .timeline-card:hover .cover-img img {
+    .timeline-card:hover .cover-img img,
+    .timeline-card:hover .cover-img video {
       transform: scale(1.04);
     }
 
@@ -561,13 +564,15 @@
       position: relative;
     }
 
+    .grid-cover video,
     .grid-cover img {
       width: 100%; height: 100%;
       object-fit: cover;
       transition: transform 0.35s;
     }
 
-    .grid-card:hover .grid-cover img { transform: scale(1.06); }
+    .grid-card:hover .grid-cover img,
+    .grid-card:hover .grid-cover video { transform: scale(1.06); }
 
     .grid-info {
       padding: 12px 14px 14px;
@@ -749,7 +754,8 @@
     }
 
     .lb-thumb.active { opacity: 1; border-color: var(--sage-light); }
-    .lb-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .lb-thumb img,
+    .lb-thumb video { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
 
     /* ═══════════════════════════════
        CATEGORY TABS
@@ -1067,7 +1073,7 @@ function restoreBgm() {
 // 比对里面的 APP_VERSION，不一致说明手上这份是缓存的旧版，自动刷新一次。
 //
 // ★ 每次修改 index.html 后，把下面这个版本号改掉，否则自检不会触发。
-const APP_VERSION = '2026-08-23b';
+const APP_VERSION = '2026-08-23c';
 
 async function checkForUpdate() {
   try {
@@ -1136,6 +1142,18 @@ function circleBadges(ev) {
   const cls = ev.circlesKnown === false ? 'card-circle-badge unknown' : 'card-circle-badge';
   const tip = ev.circlesKnown === false ? ' title="圈子未定义，没有对应的分享链接"' : '';
   return cs.map(c => `<span class="${cls}"${tip}>${c}${ev.circlesKnown === false ? ' ?' : ''}</span>`).join('');
+}
+
+// 封面缩略元素。视频不能用 <img> 渲染（会显示破图标），
+// 未开数据万象时改用 <video preload="metadata">，浏览器只拉文件头就能画出首帧。
+// 开了 CI 之后 sized() 返回的是截帧 jpg，那时用 <img> 即可。
+function coverEl(m, w, onclickAttr, alt) {
+  const src = sized(m, w);
+  if (m.type === 'video' && !CI_ON) {
+    return `<video src="${src}#t=0.5" preload="metadata" muted playsinline `
+         + `onclick="${onclickAttr}"></video>`;
+  }
+  return `<img src="${src}" alt="${alt || ''}" loading="lazy" onclick="${onclickAttr}">`;
 }
 
 function currentGroup() {
@@ -1303,7 +1321,7 @@ function renderTimeline(events) {
       const thumb = sized(m, W_COVER);
       const globalIdx = media.indexOf(m);
       return `<div class="cover-img${m.type==='video'?' has-video':''}">
-        <img src="${thumb}" alt="${m.caption||''}" loading="lazy" onclick="openLightbox('${ev.id}', ${globalIdx})">
+        ${coverEl(m, W_COVER, `openLightbox('${ev.id}', ${globalIdx})`, m.caption)}
         ${isLast ? `<div class="cover-more">+${extra}</div>` : ''}
       </div>`;
     }).join('');
@@ -1370,7 +1388,11 @@ function renderGrid(events) {
     const thumb = first ? sized(first, W_COVER) : '';
     return `<div class="grid-card" style="animation-delay:${i*0.05}s" onclick="openLightbox('${ev.id}', 0)">
       <div class="grid-cover">
-        ${thumb ? `<img src="${thumb}" alt="${ev.title}" loading="lazy">` : '<div style="width:100%;height:100%;background:var(--sage-pale)"></div>'}
+        ${thumb
+          ? (first.type === 'video' && !CI_ON
+              ? `<video src="${thumb}#t=0.5" preload="metadata" muted playsinline></video>`
+              : `<img src="${thumb}" alt="${ev.title}" loading="lazy">`)
+          : '<div style="width:100%;height:100%;background:var(--sage-pale)"></div>'}
       </div>
       <div class="grid-info">
         <div class="grid-date">${formatDate(ev.date)}</div>
@@ -1431,7 +1453,7 @@ function applyFilter(evId, cat) {
     const thumb = sized(m, W_COVER);
     const globalIdx = media.indexOf(m);
     return `<div class="cover-img${m.type==='video'?' has-video':''}">
-      <img src="${thumb}" alt="${m.caption||''}" loading="lazy" onclick="openLightboxFiltered('${evId}','${cat}',${globalIdx})">
+      ${coverEl(m, W_COVER, `openLightboxFiltered('${evId}','${cat}',${globalIdx})`, m.caption)}
       ${isLast ? `<div class="cover-more">+${extra}</div>` : ''}
     </div>`;
   }).join('');
@@ -1479,7 +1501,9 @@ function buildThumbs() {
   container.innerHTML = lbItems.map((m, i) => {
     const thumb = sized(m, W_FILM);
     return `<div class="lb-thumb${i===lbIndex?' active':''}" id="lbThumb${i}" onclick="showLbItem(${i})">
-      <img src="${thumb}" alt="">
+      ${m.type === 'video' && !CI_ON
+        ? `<video src="${thumb}#t=0.5" preload="metadata" muted playsinline></video>`
+        : `<img src="${thumb}" alt="">`}
     </div>`;
   }).join('');
 }

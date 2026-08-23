@@ -173,16 +173,20 @@
 
     .hero-poem p {
       font-family: 'Noto Serif SC', serif;
-      font-size: clamp(0.86rem, 3vw, 1.02rem);
+      font-size: clamp(0.8rem, 2.8vw, 0.94rem);
       color: var(--text-mid);
       font-weight: 300;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.16em;
       line-height: 1;
       margin: 0;
     }
 
-    /* 错落：下句比上句低一格，落款再低一截，避免三列齐头像表格 */
-    .hero-poem p:nth-of-type(2) { margin-top: 1.5em; }
+    /* 引子列稍深一点，和后半句拉开层次；两列都顶部对齐，不做错落——
+       长短差 3 字对 11 字，再错开会显得散 */
+    .hero-poem p.lead {
+      color: var(--moss);
+      letter-spacing: 0.22em;
+    }
 
     /* 落款底部与下句末字（泥）齐平。
        竖排下交叉轴是垂直方向，flex-end 即底部对齐；
@@ -916,10 +920,10 @@
       <p class="hero-subtitle"><span id="groupLabel"></span></p>
     </div>
     <div class="hero-rule"></div>
-    <div class="hero-poem" aria-label="人生到处知何似，应似飞鸿踏雪泥　苏轼《和子由渑池怀旧》">
-      <p>人生到处知何似</p>
-      <p>应似飞鸿踏雪泥</p>
-      <span class="hero-poem-src">苏轼</span>
+    <div class="hero-poem" aria-label="每一张，都是值得停下的时刻">
+      <p class="lead">每一张</p>
+      <p>都是值得停下的时刻</p>
+      <span class="hero-poem-src">拾念</span>
     </div>
   </div>
   <div class="hero-stats" id="heroStats">
@@ -1063,7 +1067,7 @@ function restoreBgm() {
 // 比对里面的 APP_VERSION，不一致说明手上这份是缓存的旧版，自动刷新一次。
 //
 // ★ 每次修改 index.html 后，把下面这个版本号改掉，否则自检不会触发。
-const APP_VERSION = '2026-08-22e';
+const APP_VERSION = '2026-08-23b';
 
 async function checkForUpdate() {
   try {

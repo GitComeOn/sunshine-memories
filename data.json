@@ -19,7 +19,8 @@
           "name": "0.凉州",
           "children": [
             "0.凉州城",
-            "1.雷台汉墓"
+            "1.雷台汉墓",
+            "2.武威文庙"
           ]
         }
       ],
@@ -202,6 +203,36 @@
           "category": "0.凉州",
           "_etag": "c88a67fd626ba739b3bd309ddff8b214",
           "_t": 1790578889000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/0.凉州/2.武威文庙/20261008154047097_edit_70101276161746.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/0.凉州/2.武威文庙/20261008154047097_edit_70101276161746.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "0.凉州",
+            "2.武威文庙"
+          ],
+          "category": "0.凉州",
+          "_etag": "e3e4df4c798be6d0a111627daa245433",
+          "_t": 1790581214000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/0.凉州/2.武威文庙/20261008154008746.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/0.凉州/2.武威文庙/20261008154008746.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "0.凉州",
+            "2.武威文庙"
+          ],
+          "category": "0.凉州",
+          "_etag": "333288ebca08e657fb65051bd55d4c29-2",
+          "_t": 1790581430000,
           "_ts": "exif"
         },
         {

@@ -21,7 +21,8 @@
             "0.凉州城",
             "1.雷台汉墓",
             "2.武威文庙",
-            "3.天梯山石窟"
+            "3.天梯山石窟",
+            "4.白塔寺"
           ]
         }
       ],
@@ -459,6 +460,51 @@
           "category": "0.凉州",
           "_etag": "d756a2037cbebd7214cdabf61e355d3e",
           "_t": 1790641079000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/0.凉州/4.白塔寺/IMG_20260929_093025_edit_130659445248332.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/0.凉州/4.白塔寺/IMG_20260929_093025_edit_130659445248332.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "0.凉州",
+            "4.白塔寺"
+          ],
+          "category": "0.凉州",
+          "_etag": "55f99403974979e9790fb9de5b40a193",
+          "_t": 1790645425000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/0.凉州/4.白塔寺/IMG_20260929_094049.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/0.凉州/4.白塔寺/IMG_20260929_094049.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "0.凉州",
+            "4.白塔寺"
+          ],
+          "category": "0.凉州",
+          "_etag": "5ec30952b770e475efb66bb9730781ba",
+          "_t": 1790646049000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/0.凉州/4.白塔寺/IMG_20260929_101315.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/0.凉州/4.白塔寺/IMG_20260929_101315.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "0.凉州",
+            "4.白塔寺"
+          ],
+          "category": "0.凉州",
+          "_etag": "06c04989d29698b14f954cadfd67a756",
+          "_t": 1790647995000,
           "_ts": "exif"
         },
         {

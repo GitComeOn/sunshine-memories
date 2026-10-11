@@ -50,6 +50,10 @@
             "1.长城第一墩",
             "2.关城"
           ]
+        },
+        {
+          "name": "4.胡杨林",
+          "children": []
         }
       ],
       "media": [
@@ -4962,6 +4966,118 @@
           "category": "1.巴丹吉林",
           "_etag": "882820120d6bc5c626c1e55940a86f37",
           "_t": 1791527998786,
+          "_ts": "name"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/4.胡杨林/mmexport1791528257776.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/4.胡杨林/mmexport1791528257776.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "4.胡杨林"
+          ],
+          "category": "4.胡杨林",
+          "_etag": "90dd4afbc6bb71a422cdfc13bdf28ce7-2",
+          "_t": 1791528257776,
+          "_ts": "name"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/4.胡杨林/mmexport1791528270507.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/4.胡杨林/mmexport1791528270507.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "4.胡杨林"
+          ],
+          "category": "4.胡杨林",
+          "_etag": "0923f24f7c589c240b2734b86b5def96",
+          "_t": 1791528270507,
+          "_ts": "name"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/4.胡杨林/mmexport1791528273570.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/4.胡杨林/mmexport1791528273570.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "4.胡杨林"
+          ],
+          "category": "4.胡杨林",
+          "_etag": "b7a8d22bac344fcb9e296e434d10163a-2",
+          "_t": 1791528273570,
+          "_ts": "name"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/4.胡杨林/mmexport1791528275909.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/4.胡杨林/mmexport1791528275909.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "4.胡杨林"
+          ],
+          "category": "4.胡杨林",
+          "_etag": "ce4ed90056c077b7e26f7893bc65a7c0-3",
+          "_t": 1791528275909,
+          "_ts": "name"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/4.胡杨林/mmexport1791528279643.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/4.胡杨林/mmexport1791528279643.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "4.胡杨林"
+          ],
+          "category": "4.胡杨林",
+          "_etag": "4fe7cd9692547606f5166ad792786ec0-2",
+          "_t": 1791528279643,
+          "_ts": "name"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/4.胡杨林/mmexport1791528287332.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/4.胡杨林/mmexport1791528287332.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "4.胡杨林"
+          ],
+          "category": "4.胡杨林",
+          "_etag": "1b1605709840ed3fb2ddd39f2a636260-2",
+          "_t": 1791528287332,
+          "_ts": "name"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/4.胡杨林/mmexport1791528302220.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/4.胡杨林/mmexport1791528302220.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "4.胡杨林"
+          ],
+          "category": "4.胡杨林",
+          "_etag": "e5146277dba168d3bfb5c83a3d64b35f-2",
+          "_t": 1791528302220,
+          "_ts": "name"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/4.胡杨林/mmexport1791528305473.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/4.胡杨林/mmexport1791528305473.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "4.胡杨林"
+          ],
+          "category": "4.胡杨林",
+          "_etag": "e60dca6b2c75575231c46b31bc3fc05a-2",
+          "_t": 1791528305473,
           "_ts": "name"
         },
         {

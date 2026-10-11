@@ -14,8 +14,98 @@
       ],
       "circlesKnown": true,
       "cosFolder": "2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关",
-      "tagTree": [],
-      "media": [],
+      "tagTree": [
+        {
+          "name": "凉州",
+          "children": []
+        }
+      ],
+      "media": [
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/凉州/IMG_20260928_134330.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/凉州/IMG_20260928_134330.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "凉州"
+          ],
+          "category": "凉州",
+          "_etag": "d5ce2d0ef441c280257b20f4ba2944c7",
+          "_t": 1790574210000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/凉州/IMG_20260928_134625_edit_130978969459356.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/凉州/IMG_20260928_134625_edit_130978969459356.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "凉州"
+          ],
+          "category": "凉州",
+          "_etag": "166876b848e2f94fadef9485832ff5f3",
+          "_t": 1790574385000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/凉州/IMG_20260928_134953.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/凉州/IMG_20260928_134953.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "凉州"
+          ],
+          "category": "凉州",
+          "_etag": "2385d87701abcae426932e4bcde0aa9a",
+          "_t": 1790574593000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/凉州/Screenshot_20260928_211209_com_xingin_xhs_DetailFeedActivity.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/凉州/Screenshot_20260928_211209_com_xingin_xhs_DetailFeedActivity.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "凉州"
+          ],
+          "category": "凉州",
+          "_etag": "fd0366e20f5bb804bb4eacb0b2c7a582",
+          "_t": 1790601129000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/凉州/IMG_20260929_143117.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/凉州/IMG_20260929_143117.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "凉州"
+          ],
+          "category": "凉州",
+          "_etag": "996bc95c38e30fe2793f625635f4ebf4",
+          "_t": 1790663477000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/凉州/IMG_20260929_143248.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/凉州/IMG_20260929_143248.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "凉州"
+          ],
+          "category": "凉州",
+          "_etag": "19a50e8fc335a996b394fb6f65adda02",
+          "_t": 1790663568000,
+          "_ts": "exif"
+        }
+      ],
       "_auto": {
         "title": "胡杨林之旅自驾游",
         "type": "出游",

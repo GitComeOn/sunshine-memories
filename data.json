@@ -2,6 +2,27 @@
   "ci": false,
   "events": [
     {
+      "id": "cos_2026_09_28_34jpvh",
+      "title": "胡杨林之旅自驾游",
+      "date": "2026-09-28",
+      "type": "出游",
+      "location": "凉州·阿拉善·嘉峪关",
+      "desc": "",
+      "cover": "",
+      "circles": [
+        "亲朋"
+      ],
+      "circlesKnown": true,
+      "cosFolder": "2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关",
+      "tagTree": [],
+      "media": [],
+      "_auto": {
+        "title": "胡杨林之旅自驾游",
+        "type": "出游",
+        "location": "凉州·阿拉善·嘉峪关"
+      }
+    },
+    {
       "id": "cos_2026_08_07_davif1",
       "title": "甘南自驾游",
       "date": "2026-08-07",

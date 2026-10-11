@@ -62,6 +62,12 @@
         {
           "name": "6.美食",
           "children": []
+        },
+        {
+          "name": "7.人物",
+          "children": [
+            "0.王道忠·严春兰"
+          ]
         }
       ],
       "media": [
@@ -4052,6 +4058,21 @@
           "category": "3.嘉峪关",
           "_etag": "b338cafeb1b55d067ea99213180605de",
           "_t": 1791189711000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/7.人物/0.王道忠·严春兰/20261008152548192_edit_73517472354297.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/7.人物/0.王道忠·严春兰/20261008152548192_edit_73517472354297.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "7.人物",
+            "0.王道忠·严春兰"
+          ],
+          "category": "7.人物",
+          "_etag": "7735ca8c62ed6f13fbc288b1e81ade73",
+          "_t": 1791189834000,
           "_ts": "exif"
         },
         {

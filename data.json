@@ -42,6 +42,10 @@
             "5.策克口岸",
             "6.神树"
           ]
+        },
+        {
+          "name": "3.嘉峪关",
+          "children": []
         }
       ],
       "media": [
@@ -3580,6 +3584,62 @@
           "category": "2.额济纳",
           "_etag": "aa23f8d28e61fc8b3dfe3d32de38140e",
           "_t": 1791167872000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/3.嘉峪关/0.IMG_20261005_185353.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/3.嘉峪关/0.IMG_20261005_185353.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "3.嘉峪关"
+          ],
+          "category": "3.嘉峪关",
+          "_etag": "688bcc9afa0662c8af1f90537cb10b80",
+          "_t": 1791197633000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/3.嘉峪关/2.IMG_20261005_185431.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/3.嘉峪关/2.IMG_20261005_185431.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "3.嘉峪关"
+          ],
+          "category": "3.嘉峪关",
+          "_etag": "6793df2f50d1b56f36c65fa02754e01d",
+          "_t": 1791197671000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/3.嘉峪关/1.IMG_20261005_185502.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/3.嘉峪关/1.IMG_20261005_185502.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "3.嘉峪关"
+          ],
+          "category": "3.嘉峪关",
+          "_etag": "10749220a51ce6739500c37562ee2850",
+          "_t": 1791197702000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/3.嘉峪关/3.IMG_20261005_185535.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/3.嘉峪关/3.IMG_20261005_185535.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "3.嘉峪关"
+          ],
+          "category": "3.嘉峪关",
+          "_etag": "1f35f5ceeab93c7d11a92eaf67297c75",
+          "_t": 1791197735000,
           "_ts": "exif"
         },
         {

@@ -30,6 +30,10 @@
         {
           "name": "1.巴丹吉林",
           "children": []
+        },
+        {
+          "name": "2.额济纳",
+          "children": []
         }
       ],
       "media": [
@@ -1574,6 +1578,20 @@
           "category": "1.巴丹吉林",
           "_etag": "0268ee5f9104a4332a176ca9b730fb50",
           "_t": 1790826285000,
+          "_ts": "exif"
+        },
+        {
+          "type": "photo",
+          "url": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/2.额济纳/IMG_20261004_101335.jpg",
+          "thumb": "https://sunshine-1343282399.cos.ap-guangzhou.myqcloud.com/2026-09-28_亲朋_出游_胡杨林之旅自驾游_凉州·阿拉善·嘉峪关/2.额济纳/IMG_20261004_101335.jpg",
+          "caption": "",
+          "poster": "",
+          "tags": [
+            "2.额济纳"
+          ],
+          "category": "2.额济纳",
+          "_etag": "3d3e7ad49bdb963e1e9de30288a30ecc",
+          "_t": 1791080015000,
           "_ts": "exif"
         },
         {
